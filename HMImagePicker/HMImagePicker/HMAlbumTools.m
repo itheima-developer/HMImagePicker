@@ -7,10 +7,11 @@
 //
 
 #import "HMAlbumTools.h"
+#import "HMAlbum.h"
 
 @implementation HMAlbumTools
 
-+ (void)fetchAssetCollectionWithCompletion:(void (^)(NSArray<PHAssetCollection *> *, BOOL))completion {
++ (void)fetchAssetCollectionWithCompletion:(void (^)(NSArray<HMAlbum *> *, BOOL))completion {
     NSAssert(completion != nil, @"必须传入完成回调");
     
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
@@ -34,7 +35,7 @@
     }
 }
 
-+ (void)fetchResultWithCompletion:(void (^)(NSArray<PHAssetCollection *> *, BOOL))completion {
++ (void)fetchResultWithCompletion:(void (^)(NSArray<HMAlbum *> *, BOOL))completion {
     // 相机胶卷
     PHFetchResult *userLibrary = [PHAssetCollection
                                   fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
@@ -52,10 +53,10 @@
     
     NSMutableArray *result = [NSMutableArray array];
     [userLibrary enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [result addObject:obj];
+        [result addObject:[HMAlbum albumWithAssetCollection:obj]];
     }];
     [syncedAlbum enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [result addObject:obj];
+        [result addObject:[HMAlbum albumWithAssetCollection:obj]];
     }];
     
     dispatch_async(dispatch_get_main_queue(), ^{ completion(result.copy, NO); });

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import Photos;
+@class HMAlbum;
 
 /// 相册工具
 @interface HMAlbumTools : NSObject
@@ -15,6 +15,6 @@
 /// 加载相册资源列表
 ///
 /// @param completion 完成回调
-+ (void)fetchAssetCollectionWithCompletion:(void (^)(NSArray <PHAssetCollection *> *assetCollection, BOOL isDenied))completion;
++ (void)fetchAssetCollectionWithCompletion:(void (^)(NSArray <HMAlbum *> *albumCollection, BOOL isDenied))completion;
 
 @end

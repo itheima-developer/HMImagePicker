@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@import Photos;
+@class HMAlbum;
 
 /// 相册列表单元格
 @interface HMAlbumTableViewCell : UITableViewCell
-/// 相册资源
-@property (nonatomic) PHAssetCollection *assetCollection;
+/// 相册模型
+@property (nonatomic) HMAlbum *album;
 @end

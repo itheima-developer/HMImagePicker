@@ -18,7 +18,7 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 
 @implementation HMAlbumTableViewController {
     /// 相册资源集合
-    NSArray<PHAssetCollection *> *_assetCollection;
+    NSArray<HMAlbum *> *_assetCollection;
 }
 
 - (void)viewDidLoad {
@@ -26,8 +26,7 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     
     self.title = @"照片";
     
-    [HMAlbumTools fetchAssetCollectionWithCompletion:^(NSArray<PHAssetCollection *> *assetCollection, BOOL isDenied) {
-        NSLog(@"%@", assetCollection);
+    [HMAlbumTools fetchAssetCollectionWithCompletion:^(NSArray<HMAlbum *> *assetCollection, BOOL isDenied) {
         _assetCollection = assetCollection;
         
         [self.tableView reloadData];
@@ -46,7 +45,7 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HMAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HMAlbumTableViewCellIdentifier forIndexPath:indexPath];
     
-    cell.assetCollection = _assetCollection[indexPath.row];
+    cell.album = _assetCollection[indexPath.row];
     
     return cell;
 }

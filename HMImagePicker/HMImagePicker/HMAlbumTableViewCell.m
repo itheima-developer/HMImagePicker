@@ -7,6 +7,7 @@
 //
 
 #import "HMAlbumTableViewCell.h"
+#import "HMAlbum.h"
 
 @implementation HMAlbumTableViewCell
 
@@ -38,46 +39,25 @@
 }
 
 #pragma mark - 设置数据
-- (void)setAssetCollection:(PHAssetCollection *)assetCollection {
-    _assetCollection = assetCollection;
+- (void)setAlbum:(HMAlbum *)album {
+    _album = album;
     
-    // 设置查询选项
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    // 仅搜索照片
-    options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
-    // 按照创建日期降序排列照片
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    self.textLabel.attributedText = album.desc;
     
-    PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    // 设置 resizeMode 可以按照指定大小缩放图像
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
-    
-    [attributedString appendAttributedString:
-     [[NSAttributedString alloc] initWithString:assetCollection.localizedTitle]
-     ];
-    [attributedString appendAttributedString:
-     [[NSAttributedString alloc]
-      initWithString:[NSString stringWithFormat:@"\n%zd", fetchResult.count]
-      attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}]
-     ];
-    
-    self.textLabel.attributedText = attributedString;
-    
-    {
-        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        // 设置 resizeMode 可以按照指定大小缩放图像
-        options.resizeMode = PHImageRequestOptionsResizeModeFast;
-        
-        [[PHImageManager defaultManager]
-         requestImageForAsset:fetchResult.lastObject
-         targetSize:CGSizeMake(600, 600)
-         contentMode:PHImageContentModeAspectFill
-         options:options
-         resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            self.imageView.image = result;
-            NSLog(@"%@", result);
-        }];
-    }
+    [[PHImageManager defaultManager]
+     requestImageForAsset:album.fetchResult.lastObject
+     // TODO: 设置加载图像尺寸
+     targetSize:CGSizeMake(600, 600)
+     contentMode:PHImageContentModeAspectFill
+     options:options
+     resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+         self.imageView.image = result;
+         NSLog(@"%@", result);
+     }];
 }
 
 @end
