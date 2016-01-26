@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */; };
+		C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */; };
+		C23393E51C57228E00E6AB68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E41C57228E00E6AB68 /* main.m */; };
+		C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E71C57228E00E6AB68 /* AppDelegate.m */; };
+		C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393EC1C57228E00E6AB68 /* Main.storyboard */; };
+		C23393F01C57228E00E6AB68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23393EF1C57228E00E6AB68 /* Assets.xcassets */; };
+		C23393F31C57228E00E6AB68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393F11C57228E00E6AB68 /* LaunchScreen.storyboard */; };
+		C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393FB1C5722A400E6AB68 /* MainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C2122CD91C57238D008FDBEA /* HMImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImagePickerController.h; sourceTree = "<group>"; };
+		C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImagePickerController.m; sourceTree = "<group>"; };
+		C2122CDC1C572494008FDBEA /* HMImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewController.h; sourceTree = "<group>"; };
+		C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewController.m; sourceTree = "<group>"; };
+		C23393E01C57228E00E6AB68 /* HMImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C23393E41C57228E00E6AB68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C23393E61C57228E00E6AB68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C23393E71C57228E00E6AB68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C23393ED1C57228E00E6AB68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C23393EF1C57228E00E6AB68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C23393F21C57228E00E6AB68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C23393F41C57228E00E6AB68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C23393FA1C5722A400E6AB68 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C23393FB1C5722A400E6AB68 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C23393DD1C57228E00E6AB68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2122CD81C572369008FDBEA /* HMImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
+				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
+				C2122CDF1C5724FD008FDBEA /* 照片选择 */,
+			);
+			path = HMImagePicker;
+			sourceTree = "<group>";
+		};
+		C2122CDF1C5724FD008FDBEA /* 照片选择 */ = {
+			isa = PBXGroup;
+			children = (
+				C2122CDC1C572494008FDBEA /* HMImageGridViewController.h */,
+				C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */,
+			);
+			name = "照片选择";
+			sourceTree = "<group>";
+		};
+		C23393D71C57228E00E6AB68 = {
+			isa = PBXGroup;
+			children = (
+				C23393E21C57228E00E6AB68 /* HMImagePicker */,
+				C23393E11C57228E00E6AB68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C23393E11C57228E00E6AB68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C23393E01C57228E00E6AB68 /* HMImagePicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C23393E21C57228E00E6AB68 /* HMImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C2122CD81C572369008FDBEA /* HMImagePicker */,
+				C23393E61C57228E00E6AB68 /* AppDelegate.h */,
+				C23393E71C57228E00E6AB68 /* AppDelegate.m */,
+				C23393FA1C5722A400E6AB68 /* MainViewController.h */,
+				C23393FB1C5722A400E6AB68 /* MainViewController.m */,
+				C23393EC1C57228E00E6AB68 /* Main.storyboard */,
+				C23393EF1C57228E00E6AB68 /* Assets.xcassets */,
+				C23393F11C57228E00E6AB68 /* LaunchScreen.storyboard */,
+				C23393F41C57228E00E6AB68 /* Info.plist */,
+				C23393E31C57228E00E6AB68 /* Supporting Files */,
+			);
+			path = HMImagePicker;
+			sourceTree = "<group>";
+		};
+		C23393E31C57228E00E6AB68 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C23393E41C57228E00E6AB68 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C23393DF1C57228E00E6AB68 /* HMImagePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C23393F71C57228E00E6AB68 /* Build configuration list for PBXNativeTarget "HMImagePicker" */;
+			buildPhases = (
+				C23393DC1C57228E00E6AB68 /* Sources */,
+				C23393DD1C57228E00E6AB68 /* Frameworks */,
+				C23393DE1C57228E00E6AB68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HMImagePicker;
+			productName = HMImagePicker;
+			productReference = C23393E01C57228E00E6AB68 /* HMImagePicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C23393D81C57228E00E6AB68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = itheima;
+				TargetAttributes = {
+					C23393DF1C57228E00E6AB68 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = C23393DB1C57228E00E6AB68 /* Build configuration list for PBXProject "HMImagePicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C23393D71C57228E00E6AB68;
+			productRefGroup = C23393E11C57228E00E6AB68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C23393DF1C57228E00E6AB68 /* HMImagePicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C23393DE1C57228E00E6AB68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C23393F31C57228E00E6AB68 /* LaunchScreen.storyboard in Resources */,
+				C23393F01C57228E00E6AB68 /* Assets.xcassets in Resources */,
+				C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C23393DC1C57228E00E6AB68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
+				C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */,
+				C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */,
+				C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */,
+				C23393E51C57228E00E6AB68 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C23393EC1C57228E00E6AB68 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C23393ED1C57228E00E6AB68 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C23393F11C57228E00E6AB68 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C23393F21C57228E00E6AB68 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C23393F51C57228E00E6AB68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C23393F61C57228E00E6AB68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C23393F81C57228E00E6AB68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HMImagePicker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itheima.HMImagePicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C23393F91C57228E00E6AB68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HMImagePicker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itheima.HMImagePicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C23393DB1C57228E00E6AB68 /* Build configuration list for PBXProject "HMImagePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C23393F51C57228E00E6AB68 /* Debug */,
+				C23393F61C57228E00E6AB68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C23393F71C57228E00E6AB68 /* Build configuration list for PBXNativeTarget "HMImagePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C23393F81C57228E00E6AB68 /* Debug */,
+				C23393F91C57228E00E6AB68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C23393D81C57228E00E6AB68 /* Project object */;
+}
