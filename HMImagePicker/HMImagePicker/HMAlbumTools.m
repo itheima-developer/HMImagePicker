@@ -27,6 +27,7 @@
         }
             break;
         default:
+            NSLog(@"拒绝访问相册");
             completion(nil, YES);
             
             break;
@@ -42,7 +43,7 @@
     
     // 同步相册
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:YES]];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:NO]];
     
     PHFetchResult *syncedAlbum = [PHAssetCollection
                                   fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum

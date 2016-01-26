@@ -7,27 +7,21 @@
 //
 
 #import "HMImagePickerController.h"
-#import "HMAlbumTools.h"
-#import "HMImageGridViewController.h"
+#import "HMAlbumTableViewController.h"
 
 @interface HMImagePickerController ()
 
 @end
 
 @implementation HMImagePickerController {
-    HMImageGridViewController *_rootViewController;
+    HMAlbumTableViewController *_rootViewController;
 }
 
 #pragma mark - 构造函数
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
-        [HMAlbumTools fetchAssetCollectionWithCompletion:^(NSArray<PHAssetCollection *> *assetCollection, BOOL isDenied) {
-            NSLog(@"%@ %d", assetCollection, isDenied);
-        }];
-        
-        _rootViewController = [[HMImageGridViewController alloc] init];
+        _rootViewController = [[HMAlbumTableViewController alloc] init];
         
         [self pushViewController:_rootViewController animated:NO];
     }

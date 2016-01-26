@@ -10,6 +10,8 @@
 		C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */; };
 		C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */; };
 		C2122CE61C574E1A008FDBEA /* HMAlbumTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */; };
+		C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */; };
+		C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */; };
 		C23393E51C57228E00E6AB68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E41C57228E00E6AB68 /* main.m */; };
 		C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E71C57228E00E6AB68 /* AppDelegate.m */; };
 		C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393EC1C57228E00E6AB68 /* Main.storyboard */; };
@@ -25,6 +27,10 @@
 		C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewController.m; sourceTree = "<group>"; };
 		C2122CE41C574E1A008FDBEA /* HMAlbumTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTools.h; sourceTree = "<group>"; };
 		C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTools.m; sourceTree = "<group>"; };
+		C2122CE81C575668008FDBEA /* HMAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTableViewController.h; sourceTree = "<group>"; };
+		C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTableViewController.m; sourceTree = "<group>"; };
+		C2122CEC1C575B82008FDBEA /* HMAlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTableViewCell.h; sourceTree = "<group>"; };
+		C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTableViewCell.m; sourceTree = "<group>"; };
 		C23393E01C57228E00E6AB68 /* HMImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23393E41C57228E00E6AB68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C23393E61C57228E00E6AB68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +59,7 @@
 			children = (
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
+				C2122CEB1C57572E008FDBEA /* 相册列表 */,
 				C2122CE71C57506E008FDBEA /* 相册工具 */,
 				C2122CDF1C5724FD008FDBEA /* 照片选择 */,
 			);
@@ -75,6 +82,17 @@
 				C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */,
 			);
 			name = "相册工具";
+			sourceTree = "<group>";
+		};
+		C2122CEB1C57572E008FDBEA /* 相册列表 */ = {
+			isa = PBXGroup;
+			children = (
+				C2122CE81C575668008FDBEA /* HMAlbumTableViewController.h */,
+				C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */,
+				C2122CEC1C575B82008FDBEA /* HMAlbumTableViewCell.h */,
+				C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */,
+			);
+			name = "相册列表";
 			sourceTree = "<group>";
 		};
 		C23393D71C57228E00E6AB68 = {
@@ -189,7 +207,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */,
 				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
+				C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */,
 				C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */,
 				C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */,
 				C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */,
