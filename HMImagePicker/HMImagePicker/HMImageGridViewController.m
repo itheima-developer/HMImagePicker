@@ -20,8 +20,19 @@
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         self.collectionView.backgroundColor = [UIColor whiteColor];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                                 initWithTitle:@"取消"
+                                                 style:UIBarButtonItemStylePlain
+                                                 target:self
+                                                 action:@selector(clickCloseButton)];
+        
     }
     return self;
+}
+
+- (void)clickCloseButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
