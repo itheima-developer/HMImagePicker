@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */; };
 		C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */; };
-		C2122CE61C574E1A008FDBEA /* HMAlbumTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */; };
 		C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */; };
 		C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */; };
 		C2122CF11C576E54008FDBEA /* HMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CF01C576E54008FDBEA /* HMAlbum.m */; };
@@ -26,8 +25,6 @@
 		C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImagePickerController.m; sourceTree = "<group>"; };
 		C2122CDC1C572494008FDBEA /* HMImageGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewController.h; sourceTree = "<group>"; };
 		C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewController.m; sourceTree = "<group>"; };
-		C2122CE41C574E1A008FDBEA /* HMAlbumTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTools.h; sourceTree = "<group>"; };
-		C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTools.m; sourceTree = "<group>"; };
 		C2122CE81C575668008FDBEA /* HMAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTableViewController.h; sourceTree = "<group>"; };
 		C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTableViewController.m; sourceTree = "<group>"; };
 		C2122CEC1C575B82008FDBEA /* HMAlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbumTableViewCell.h; sourceTree = "<group>"; };
@@ -64,7 +61,6 @@
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
 				C2122CF21C576E60008FDBEA /* 模型 */,
 				C2122CEB1C57572E008FDBEA /* 相册列表 */,
-				C2122CE71C57506E008FDBEA /* 相册工具 */,
 				C2122CDF1C5724FD008FDBEA /* 照片选择 */,
 			);
 			path = HMImagePicker;
@@ -77,15 +73,6 @@
 				C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */,
 			);
 			name = "照片选择";
-			sourceTree = "<group>";
-		};
-		C2122CE71C57506E008FDBEA /* 相册工具 */ = {
-			isa = PBXGroup;
-			children = (
-				C2122CE41C574E1A008FDBEA /* HMAlbumTools.h */,
-				C2122CE51C574E1A008FDBEA /* HMAlbumTools.m */,
-			);
-			name = "相册工具";
 			sourceTree = "<group>";
 		};
 		C2122CEB1C57572E008FDBEA /* 相册列表 */ = {
@@ -228,7 +215,6 @@
 				C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */,
 				C2122CF11C576E54008FDBEA /* HMAlbum.m in Sources */,
 				C23393E51C57228E00E6AB68 /* main.m in Sources */,
-				C2122CE61C574E1A008FDBEA /* HMAlbumTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

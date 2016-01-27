@@ -60,9 +60,99 @@
          ];
         
         _desc = attributedString.copy;
-
     }
     return _desc;
+}
+
+#pragma mark - 公共方法
+- (UIImage *)emptyImageWithSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    
+    [[UIColor whiteColor] setFill];
+    UIRectFill(CGRectMake(0, 0, size.width, size.height));
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
+
+- (void)requestThumbnailWithSize:(CGSize)size completion:(void (^)(UIImage * _Nonnull))completion {
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    // 设置 resizeMode 可以按照指定大小缩放图像
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    // 只回调一次缩放之后的照片，否则会调用多次
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    // 加载 3 张图像，生成缩略图
+    NSMutableArray *images = [NSMutableArray array];
+    CGSize imageSize = [self sizeWithScale:size];
+    
+    for (NSInteger i = 0; i < 3 && i <= (_fetchResult.count - 1); i++) {
+        PHAsset *asset = _fetchResult[i];
+        
+        dispatch_group_enter(group);
+        
+        [[PHImageManager defaultManager]
+         requestImageForAsset:asset
+         targetSize:imageSize
+         contentMode:PHImageContentModeAspectFill
+         options:options
+         resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+             [images addObject:result];
+             
+             dispatch_group_leave(group);
+         }];
+    }
+    
+    dispatch_group_notify(group, dispatch_get_global_queue(0, 0), ^{
+        UIImage *result = [self thumbnailWithImages:images size:imageSize];
+        
+        dispatch_async(dispatch_get_main_queue(), ^ { completion(result); });
+    });
+}
+
+- (UIImage *)thumbnailWithImages:(NSArray <UIImage *> *)images size:(CGSize)size {
+    
+    UIGraphicsBeginImageContext(size);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGFloat margin = 3.0 * [UIScreen mainScreen].scale;
+    NSInteger index = 0;
+    for (UIImage *image in images.reverseObjectEnumerator) {
+        CGContextSaveGState(ctx);
+        
+        CGFloat top = index * margin;
+        index++;
+        CGFloat left = (images.count - index) * margin;
+        UIRectClip(CGRectMake(left, top, size.width - left * 2, size.height - top));
+        
+        CGFloat x = (size.width - image.size.width) * 0.5;
+        CGFloat y = (size.height - image.size.height) * 0.5;
+        
+        CGRect rect = CGRectMake(x, y, image.size.width, image.size.height);
+        
+        [image drawInRect:rect];
+        
+        CGContextRestoreGState(ctx);
+    }
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
+
+- (CGSize)sizeWithScale:(CGSize)size {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    
+    return CGSizeMake(size.width * scale, size.height * scale);
 }
 
 @end

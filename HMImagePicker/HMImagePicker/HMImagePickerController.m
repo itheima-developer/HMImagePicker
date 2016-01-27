@@ -24,6 +24,7 @@
         _rootViewController = [[HMAlbumTableViewController alloc] init];
         
         [self pushViewController:_rootViewController animated:NO];
+        self.toolbarHidden = NO;
     }
     return self;
 }

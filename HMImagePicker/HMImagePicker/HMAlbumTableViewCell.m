@@ -44,20 +44,12 @@
     
     self.textLabel.attributedText = album.desc;
     
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    // 设置 resizeMode 可以按照指定大小缩放图像
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    CGSize imageSize = CGSizeMake(80, 80);
+    self.imageView.image = [album emptyImageWithSize:imageSize];
     
-    [[PHImageManager defaultManager]
-     requestImageForAsset:album.fetchResult.lastObject
-     // TODO: 设置加载图像尺寸
-     targetSize:CGSizeMake(600, 600)
-     contentMode:PHImageContentModeAspectFill
-     options:options
-     resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-         self.imageView.image = result;
-         NSLog(@"%@", result);
-     }];
+    [album requestThumbnailWithSize:imageSize completion:^(UIImage * _Nonnull thumbnail) {
+        self.imageView.image = thumbnail;
+    }];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "HMAlbumTableViewController.h"
-#import "HMAlbumTools.h"
+#import "HMAlbum.h"
 #import "HMAlbumTableViewCell.h"
 
 static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellIdentifier";
@@ -24,17 +24,87 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 导航栏
     self.title = @"照片";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton)];
+    self.navigationController.toolbarHidden = YES;
     
-    [HMAlbumTools fetchAssetCollectionWithCompletion:^(NSArray<HMAlbum *> *assetCollection, BOOL isDenied) {
+    // 获取相册
+    [self fetchAssetCollectionWithCompletion:^(NSArray<HMAlbum *> *assetCollection, BOOL isDenied) {
+        if (isDenied) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"没有权限访问相册，请先在设置程序中授权访问" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+        
         _assetCollection = assetCollection;
         
         [self.tableView reloadData];
     }];
     
+    // 设置表格
     [self.tableView registerClass:[HMAlbumTableViewCell class] forCellReuseIdentifier:HMAlbumTableViewCellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 80;
+}
+
+- (void)clickCloseButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - 加载相册
+- (void)fetchAssetCollectionWithCompletion:(void (^)(NSArray<HMAlbum *> *, BOOL))completion {
+    
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    
+    switch (status) {
+        case PHAuthorizationStatusAuthorized:
+            [self fetchResultWithCompletion:completion];
+            break;
+        case PHAuthorizationStatusNotDetermined:
+        {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                [self fetchResultWithCompletion:completion];
+            }];
+        }
+            break;
+        default:
+            NSLog(@"拒绝访问相册");
+            completion(nil, YES);
+            
+            break;
+    }
+}
+
+- (void)fetchResultWithCompletion:(void (^)(NSArray<HMAlbum *> *, BOOL))completion {
+    // 相机胶卷
+    PHFetchResult *userLibrary = [PHAssetCollection
+                                  fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                  subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
+                                  options:nil];
+    
+    // 同步相册
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:NO]];
+    
+    PHFetchResult *syncedAlbum = [PHAssetCollection
+                                  fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+                                  subtype:PHAssetCollectionSubtypeAlbumSyncedAlbum
+                                  options:options];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    [userLibrary enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [result addObject:[HMAlbum albumWithAssetCollection:obj]];
+    }];
+    [syncedAlbum enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [result addObject:[HMAlbum albumWithAssetCollection:obj]];
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{ completion(result.copy, NO); });
 }
 
 #pragma mark - Table view data source
