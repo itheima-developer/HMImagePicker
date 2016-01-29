@@ -8,7 +8,7 @@
 
 #import "HMViewerViewController.h"
 
-@interface HMViewerViewController ()
+@interface HMViewerViewController () <UIScrollViewDelegate>
 
 @end
 
@@ -39,13 +39,18 @@
 - (void)setImageViewPosition {
     
     CGSize size = [self displaySize:_imageView.image];
-    _scrollView.contentSize = size;
     
-    if (size.height > _scrollView.bounds.size.height) {
-        _imageView.frame = CGRectMake(0, 0, size.width, size.height);
-    } else {
+    _imageView.transform = CGAffineTransformIdentity;
+    _scrollView.contentInset = UIEdgeInsetsZero;
+    
+    _scrollView.contentSize = size;
+    _imageView.frame = CGRectMake(0, 0, size.width, size.height);
+    
+    if (size.height < _scrollView.bounds.size.height) {
+        
         CGFloat y = (_scrollView.bounds.size.height - size.height) * 0.5;
-        _imageView.frame = CGRectMake(0, y, size.width, size.height);
+        
+        _scrollView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0);
     }
 }
 
@@ -66,6 +71,9 @@
     _scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     self.view = _scrollView;
+    _scrollView.minimumZoomScale = 0.5;
+    _scrollView.maximumZoomScale = 2.0;
+    _scrollView.delegate = self;
     
     _imageView = [[UIImageView alloc] init];
     [_scrollView addSubview:_imageView];
@@ -79,6 +87,21 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setImageViewPosition];
     });
+}
+
+#pragma mark - UIScrollViewDelegate
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return _imageView;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    CGFloat offsetY = (_scrollView.bounds.size.height - view.frame.size.height) * 0.5;
+    CGFloat offsetX = (_scrollView.bounds.size.width - view.frame.size.width) * 0.5;
+    
+    offsetY = offsetY < 0 ? 0 : offsetY;
+    offsetX = offsetX < 0 ? 0 : offsetX;
+    
+    _scrollView.contentInset = UIEdgeInsetsMake(offsetY, offsetX, 0, 0);
 }
 
 @end
