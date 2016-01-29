@@ -59,7 +59,7 @@
 }
 
 - (PHAsset *)assetWithIndex:(NSInteger)index {
-    if (_previewAssets) {
+    if (_previewAlbum) {
         return [_album assetWithIndex:index];
     } else {
         return _selectedAssets[index];
