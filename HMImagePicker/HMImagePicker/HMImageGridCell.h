@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HMImageSelectButton.h"
 
 @protocol HMImageGridCellDelegate;
 
@@ -14,7 +15,7 @@
 @interface HMImageGridCell : UICollectionViewCell
 @property (nonatomic, weak) id<HMImageGridCellDelegate> delegate;
 @property (nonatomic) UIImageView *imageView;
-@property (nonatomic) UIButton *selectedButton;
+@property (nonatomic) HMImageSelectButton *selectedButton;
 
 /// 点击选中图像按钮
 - (void)clickSelectedButton;

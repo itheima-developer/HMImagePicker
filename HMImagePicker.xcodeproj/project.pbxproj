@@ -14,6 +14,7 @@
 		C2122CF11C576E54008FDBEA /* HMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CF01C576E54008FDBEA /* HMAlbum.m */; };
 		C221B70E1C5B3C1A00079697 /* HMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C221B70D1C5B3C1A00079697 /* HMPreviewViewController.m */; };
 		C221B7121C5B3C3800079697 /* HMViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C221B7111C5B3C3800079697 /* HMViewerViewController.m */; };
+		C22C21FC1C5C1101003F6050 /* HMImageSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C22C21FB1C5C1101003F6050 /* HMImageSelectButton.m */; };
 		C23393E51C57228E00E6AB68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E41C57228E00E6AB68 /* main.m */; };
 		C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E71C57228E00E6AB68 /* AppDelegate.m */; };
 		C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393EC1C57228E00E6AB68 /* Main.storyboard */; };
@@ -22,7 +23,7 @@
 		C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393FB1C5722A400E6AB68 /* MainViewController.m */; };
 		C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */; };
 		C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */; };
-		C2348FB41C5B15D6007124FA /* FFImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */; };
+		C2348FB41C5B15D6007124FA /* HMImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2348FB31C5B15D6007124FA /* HMImagePicker.bundle */; };
 		C2348FB71C5B1D3C007124FA /* HMSelectCounterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 		C221B70D1C5B3C1A00079697 /* HMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPreviewViewController.m; sourceTree = "<group>"; };
 		C221B7101C5B3C3800079697 /* HMViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMViewerViewController.h; sourceTree = "<group>"; };
 		C221B7111C5B3C3800079697 /* HMViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMViewerViewController.m; sourceTree = "<group>"; };
+		C22C21FA1C5C1101003F6050 /* HMImageSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageSelectButton.h; sourceTree = "<group>"; };
+		C22C21FB1C5C1101003F6050 /* HMImageSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageSelectButton.m; sourceTree = "<group>"; };
 		C23393E01C57228E00E6AB68 /* HMImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23393E41C57228E00E6AB68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C23393E61C57228E00E6AB68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,7 +58,7 @@
 		C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridCell.m; sourceTree = "<group>"; };
 		C2348FB01C5B108E007124FA /* HMImageGridViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewLayout.h; sourceTree = "<group>"; };
 		C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewLayout.m; sourceTree = "<group>"; };
-		C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FFImagePicker.bundle; sourceTree = "<group>"; };
+		C2348FB31C5B15D6007124FA /* HMImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HMImagePicker.bundle; sourceTree = "<group>"; };
 		C2348FB51C5B1D3C007124FA /* HMSelectCounterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSelectCounterButton.h; sourceTree = "<group>"; };
 		C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSelectCounterButton.m; sourceTree = "<group>"; };
 		C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMImagePickerGlobal.h; sourceTree = "<group>"; };
@@ -75,7 +78,7 @@
 		C2122CD81C572369008FDBEA /* HMImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */,
+				C2348FB31C5B15D6007124FA /* HMImagePicker.bundle */,
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
 				C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */,
@@ -178,6 +181,8 @@
 			children = (
 				C2348FB51C5B1D3C007124FA /* HMSelectCounterButton.h */,
 				C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */,
+				C22C21FA1C5C1101003F6050 /* HMImageSelectButton.h */,
+				C22C21FB1C5C1101003F6050 /* HMImageSelectButton.m */,
 			);
 			name = "自定义控件";
 			sourceTree = "<group>";
@@ -241,7 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23393F31C57228E00E6AB68 /* LaunchScreen.storyboard in Resources */,
-				C2348FB41C5B15D6007124FA /* FFImagePicker.bundle in Resources */,
+				C2348FB41C5B15D6007124FA /* HMImagePicker.bundle in Resources */,
 				C23393F01C57228E00E6AB68 /* Assets.xcassets in Resources */,
 				C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */,
 			);
@@ -258,6 +263,7 @@
 				C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */,
 				C221B70E1C5B3C1A00079697 /* HMPreviewViewController.m in Sources */,
 				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
+				C22C21FC1C5C1101003F6050 /* HMImageSelectButton.m in Sources */,
 				C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */,
 				C221B7121C5B3C3800079697 /* HMViewerViewController.m in Sources */,
 				C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */,

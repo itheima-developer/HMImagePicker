@@ -7,6 +7,7 @@
 //
 
 #import "HMSelectCounterButton.h"
+#import "HMImagePickerGlobal.h"
 
 @implementation HMSelectCounterButton
 
@@ -34,10 +35,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        NSURL *url = [bundle URLForResource:@"FFImagePicker.bundle" withExtension:nil];
+        NSURL *url = [bundle URLForResource:HMImagePickerBundleName withExtension:nil];
         NSBundle *imageBundle = [NSBundle bundleWithURL:url];
         
-        [self setBackgroundImage:[UIImage imageNamed:@"number_icon" inBundle:imageBundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"number_icon"
+                                    inBundle:imageBundle
+               compatibleWithTraitCollection:nil];
+        [self setBackgroundImage:image forState:UIControlStateNormal];
         [self setTitle:@"0" forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         self.hidden = YES;

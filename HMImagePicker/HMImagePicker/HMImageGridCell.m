@@ -8,10 +8,6 @@
 
 #import "HMImageGridCell.h"
 
-@interface HMImageGridCell()
-@property (nonatomic) NSBundle *imageBundle;
-@end
-
 @implementation HMImageGridCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -35,19 +31,7 @@
 
 #pragma mark - 监听方法
 - (void)clickSelectedButton {
-    _selectedButton.selected = !_selectedButton.selected;
-    
-    _selectedButton.transform = CGAffineTransformMakeScale(0.2, 0.2);
-    [UIView animateWithDuration:0.25
-                          delay:0
-         usingSpringWithDamping:0.5
-          initialSpringVelocity:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         _selectedButton.transform = CGAffineTransformIdentity;
-                     } completion:^(BOOL finished) {
-                         [self.delegate imageGridCell:self didSelected:_selectedButton.selected];
-                     }];
+    [self.delegate imageGridCell:self didSelected:_selectedButton.selected];
 }
 
 #pragma mark - 懒加载
@@ -61,33 +45,14 @@
     return _imageView;
 }
 
-- (UIButton *)selectedButton {
+- (HMImageSelectButton *)selectedButton {
     if (_selectedButton == nil) {
-        _selectedButton = [[UIButton alloc] init];
-        
-        UIImage *normalImage = [UIImage imageNamed:@"check_box_default"
-                                          inBundle:self.imageBundle
-                     compatibleWithTraitCollection:nil];
-        [_selectedButton setImage:normalImage forState:UIControlStateNormal];
-        UIImage *selectedImage = [UIImage imageNamed:@"check_box_right"
-                                            inBundle:self.imageBundle
-                       compatibleWithTraitCollection:nil];
-        [_selectedButton setImage:selectedImage forState:UIControlStateSelected];
-        [_selectedButton sizeToFit];
-        
+        _selectedButton = [[HMImageSelectButton alloc]
+                           initWithImageName:@"check_box_default"
+                           selectedName:@"check_box_right"];
         [_selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _selectedButton;
-}
-
-- (NSBundle *)imageBundle {
-    if (_imageBundle == nil) {
-        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        NSURL *url = [bundle URLForResource:@"FFImagePicker.bundle" withExtension:nil];
-        
-        _imageBundle = [NSBundle bundleWithURL:url];
-    }
-    return _imageBundle;
 }
 
 @end

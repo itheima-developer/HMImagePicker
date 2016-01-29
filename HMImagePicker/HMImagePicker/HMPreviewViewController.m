@@ -7,8 +7,10 @@
 //
 
 #import "HMPreviewViewController.h"
+#import "HMImagePickerGlobal.h"
 #import "HMViewerViewController.h"
 #import "HMSelectCounterButton.h"
+#import "HMImageSelectButton.h"
 
 @interface HMPreviewViewController () <UIPageViewControllerDataSource>
 @property (nonatomic, readonly) NSInteger imagesCount;
@@ -69,21 +71,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self prepareChildControllers];
     [self prepareNavigationBar];
 }
 
 #pragma mark - 监听方法
+- (void)clickSelectedButton {
+    NSLog(@"%s", __FUNCTION__);
+}
+
 // 如果没有选中照片，返回当前预览的图片
 - (void)clickFinishedButton {
     
-    //    [[NSNotificationCenter defaultCenter]
-    //     postNotificationName:HMImagePickerDidSelectedNotification
-    //     object:self
-    //     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
-    NSLog(@"%s", __FUNCTION__);
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:HMImagePickerDidSelectedNotification
+     object:self
+     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
 }
 
 - (void)clickCloseButton {
@@ -169,6 +174,15 @@
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     self.toolbarItems = @[cancelItem, spaceItem, counterItem, _doneItem];
+    
+    _counterButton.count = _selectedAssets.count;
+    
+    HMImageSelectButton *selectedButton = [[HMImageSelectButton alloc]
+                                           initWithImageName:@"check_box_default"
+                                           selectedName:@"check_box_right"];
+    [selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:selectedButton];
 }
 
 @end

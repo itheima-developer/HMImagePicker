@@ -11,6 +11,8 @@
 
 NSString *const HMImagePickerDidSelectedNotification = @"HMImagePickerDidSelectedNotification";
 NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAssetsKey";
+NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
+
 /// 默认选择图像大小
 #define HMImagePickerDefaultSize    CGSizeMake(600, 600)
 
