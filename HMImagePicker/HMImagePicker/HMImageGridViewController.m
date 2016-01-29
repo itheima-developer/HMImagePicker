@@ -8,7 +8,6 @@
 
 #import "HMImageGridViewController.h"
 #import "HMImagePickerGlobal.h"
-#import "HMAlbum.h"
 #import "HMImageGridCell.h"
 #import "HMImageGridViewLayout.h"
 #import "HMSelectCounterButton.h"
@@ -121,7 +120,10 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 
 #pragma mark - 监听方法
 - (void)clickPreviewButton {
-    HMPreviewViewController *preview = [[HMPreviewViewController alloc] init];
+    HMPreviewViewController *preview = [[HMPreviewViewController alloc]
+                                        initWithAlbum:_album
+                                        selectedAssets:_selectedAssets
+                                        maxPickerCount:_maxPickerCount];
     
     [self.navigationController pushViewController:preview animated:YES];
 }

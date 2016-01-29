@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import Photos;
-@class HMAlbum;
+#import "HMAlbum.h"
 
 /// 多图选择控制器
 @interface HMImageGridViewController : UICollectionViewController

@@ -17,10 +17,27 @@
 @implementation HMPreviewViewController {
     UIPageViewController *_pageController;
     
+    /// 相册模型
+    HMAlbum *_album;
+    /// 选中素材数组
+    NSMutableArray <PHAsset *>*_selectedAssets;
+    /// 最大选择图像数量
+    NSInteger _maxPickerCount;
+    
     /// 完成按钮
     UIBarButtonItem *_doneItem;
     /// 选择计数按钮
     HMSelectCounterButton *_counterButton;
+}
+
+- (instancetype)initWithAlbum:(id)album selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets maxPickerCount:(NSInteger)maxPickerCount {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        _album = album;
+        _selectedAssets = selectedAssets;
+        _maxPickerCount = maxPickerCount;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -33,6 +50,7 @@
 }
 
 #pragma mark - 监听方法
+// 如果没有选中照片，返回当前预览的图片
 - (void)clickFinishedButton {
     
     //    [[NSNotificationCenter defaultCenter]
@@ -86,7 +104,6 @@
     UIBarButtonItem *counterItem = [[UIBarButtonItem alloc] initWithCustomView:_counterButton];
     
     _doneItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(clickFinishedButton)];
-    _doneItem.enabled = NO;
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
