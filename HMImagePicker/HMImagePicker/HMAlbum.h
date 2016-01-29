@@ -39,4 +39,11 @@
 /// @param completion 完成回调
 - (void)requestThumbnailWithSize:(CGSize)size completion:( void (^ _Nonnull)(UIImage * _Nonnull thumbnail))completion;
 
+/// 请求指定资源索引的缩略图
+///
+/// @param index      资源索引
+/// @param size       缩略图尺寸
+/// @param completion 完成回调
+- (void)requestThumbnailWithAssetIndex:(NSInteger)index Size:(CGSize)size completion:( void (^ _Nonnull)(UIImage * _Nonnull thumbnail))completion;
+
 @end

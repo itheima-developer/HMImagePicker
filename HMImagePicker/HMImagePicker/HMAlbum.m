@@ -64,11 +64,11 @@
     return _desc;
 }
 
-#pragma mark - 公共方法
+#pragma mark - 相册列表调用方法
 - (UIImage *)emptyImageWithSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
     
-    [[UIColor whiteColor] setFill];
+    [[UIColor redColor] setFill];
     UIRectFill(CGRectMake(0, 0, size.width, size.height));
     
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
@@ -80,17 +80,12 @@
 
 - (void)requestThumbnailWithSize:(CGSize)size completion:(void (^)(UIImage * _Nonnull))completion {
     
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    // 设置 resizeMode 可以按照指定大小缩放图像
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-    // 只回调一次缩放之后的照片，否则会调用多次
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    
     dispatch_group_t group = dispatch_group_create();
     
     // 加载 3 张图像，生成缩略图
     NSMutableArray *images = [NSMutableArray array];
     CGSize imageSize = [self sizeWithScale:size];
+    PHImageRequestOptions *options = [self imageRequestOptions];
     
     for (NSInteger i = 0; i < 3 && i <= (_fetchResult.count - 1); i++) {
         PHAsset *asset = _fetchResult[i];
@@ -116,6 +111,26 @@
     });
 }
 
+- (void)requestThumbnailWithAssetIndex:(NSInteger)index Size:(CGSize)size completion:(void (^)(UIImage * _Nonnull))completion {
+    
+    PHAsset *asset = _fetchResult[index];
+    
+    [[PHImageManager defaultManager]
+     requestImageForAsset:asset
+     targetSize:[self sizeWithScale:size]
+     contentMode:PHImageContentModeAspectFill
+     options:[self imageRequestOptions]
+     resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+         completion(result);
+     }];
+}
+
+/// 使用图像数组生成层叠的缩略图
+///
+/// @param images 图像数组
+/// @param size   图像尺寸
+///
+/// @return 层叠缩略图
 - (UIImage *)thumbnailWithImages:(NSArray <UIImage *> *)images size:(CGSize)size {
     
     UIGraphicsBeginImageContext(size);
@@ -153,6 +168,18 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     
     return CGSizeMake(size.width * scale, size.height * scale);
+}
+
+/// 图像请求选项
+- (PHImageRequestOptions *)imageRequestOptions {
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    // 设置 resizeMode 可以按照指定大小缩放图像
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    // 只回调一次缩放之后的照片，否则会调用多次
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    
+    return options;
 }
 
 @end
