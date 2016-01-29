@@ -21,6 +21,8 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 @implementation HMImageGridViewController {
     /// 相册模型
     HMAlbum *_album;
+    /// 选中素材数组
+    NSMutableArray <PHAsset *>*_selectedAssets;
     /// 预览按钮
     UIBarButtonItem *_previewItem;
     /// 完成按钮
@@ -31,11 +33,12 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 
 #pragma mark - 构造函数
 
-- (instancetype)initWithAlbum:(HMAlbum *)album {
+- (instancetype)initWithAlbum:(HMAlbum *)album selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
     HMImageGridViewLayout *layout = [[HMImageGridViewLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         _album = album;
+        _selectedAssets = selectedAssets;
     }
     return self;
 }
@@ -52,13 +55,17 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     PHAsset *asset = [_album assetWithIndex:indexPath.item];
     
     if (selected) {
-        [self.selectedAssets addObject:asset];
+        [_selectedAssets addObject:asset];
     } else {
-        [self.selectedAssets removeObject:asset];
+        [_selectedAssets removeObject:asset];
     }
     
-    // 更新 UI
-    _counterButton.count = self.selectedAssets.count;
+    [self updateCounter];
+}
+
+/// 更新计数显示
+- (void)updateCounter {
+    _counterButton.count = _selectedAssets.count;
     _doneItem.enabled = _counterButton.count > 0;
     _previewItem.enabled = _counterButton.count > 0;
 }
@@ -76,6 +83,7 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     [_album requestThumbnailWithAssetIndex:indexPath.item Size:cell.bounds.size completion:^(UIImage * _Nonnull thumbnail) {
         cell.imageView.image = thumbnail;
     }];
+    cell.selectedButton.selected = [_selectedAssets containsObject:[_album assetWithIndex:indexPath.item]];
     
     cell.delegate = self;
     
@@ -113,6 +121,9 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     
     // 注册可重用 cell
     [self.collectionView registerClass:[HMImageGridCell class] forCellWithReuseIdentifier:HMImageGridViewCellIdentifier];
+    
+    // 更新计数器显示
+    [self updateCounter];
 }
 
 @end

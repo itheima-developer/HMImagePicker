@@ -15,7 +15,5 @@
 /// 构造函数
 ///
 /// @return 相册模型
-- (instancetype)initWithAlbum:(HMAlbum *)album;
-/// 选中素材数组
-@property (nonatomic) NSMutableArray <PHAsset *> *selectedAssets;
+- (instancetype)initWithAlbum:(HMAlbum *)album selectedAssets:(NSMutableArray <PHAsset *> *)selectedAssets;
 @end

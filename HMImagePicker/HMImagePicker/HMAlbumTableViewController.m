@@ -123,9 +123,9 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HMAlbum *album = _assetCollection[indexPath.row];
-    HMImageGridViewController *grid = [[HMImageGridViewController alloc] initWithAlbum:album];
-    
-    grid.selectedAssets = self.selectedAssets;
+    HMImageGridViewController *grid = [[HMImageGridViewController alloc]
+                                       initWithAlbum:album
+                                       selectedAssets:self.selectedAssets];
     
     [self.navigationController pushViewController:grid animated:YES];
 }

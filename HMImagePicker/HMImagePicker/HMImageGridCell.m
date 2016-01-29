@@ -10,19 +10,27 @@
 
 @interface HMImageGridCell()
 @property (nonatomic) NSBundle *imageBundle;
-@property (nonatomic) UIButton *selectedButton;
 @end
 
 @implementation HMImageGridCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.selectedButton];
+    }
+    return self;
+}
 
 #pragma mark - 布局子视图
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.imageView.frame = self.bounds;
+    _imageView.frame = self.bounds;
     
-    CGFloat offsetX = self.bounds.size.width - self.selectedButton.bounds.size.width;
-    self.selectedButton.frame = CGRectOffset(self.selectedButton.bounds, offsetX, 0);
+    CGFloat offsetX = self.bounds.size.width - _selectedButton.bounds.size.width;
+    _selectedButton.frame = CGRectOffset(_selectedButton.bounds, offsetX, 0);
 }
 
 #pragma mark - 监听方法
@@ -49,8 +57,6 @@
         
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
         _imageView.clipsToBounds = YES;
-        
-        [self.contentView addSubview:_imageView];
     }
     return _imageView;
 }
@@ -70,8 +76,6 @@
         [_selectedButton sizeToFit];
         
         [_selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.contentView addSubview:_selectedButton];
     }
     return _selectedButton;
 }

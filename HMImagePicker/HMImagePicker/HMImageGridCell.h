@@ -12,8 +12,9 @@
 
 /// 多图选择视图 Cell
 @interface HMImageGridCell : UICollectionViewCell
-@property (nonatomic) UIImageView *imageView;
 @property (nonatomic, weak) id<HMImageGridCellDelegate> delegate;
+@property (nonatomic) UIImageView *imageView;
+@property (nonatomic) UIButton *selectedButton;
 @end
 
 @protocol HMImageGridCellDelegate <NSObject>
