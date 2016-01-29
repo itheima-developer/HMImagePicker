@@ -46,6 +46,10 @@
     _imageView.backgroundColor = [UIColor colorWithRed:((float)arc4random_uniform(256) / 255.0) green:((float)arc4random_uniform(256) / 255.0) blue:((float)arc4random_uniform(256) / 255.0) alpha:1.0];
 }
 
+- (void)dealloc {
+    NSLog(@"%s", __FUNCTION__);
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     

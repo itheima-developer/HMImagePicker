@@ -10,8 +10,8 @@
 #import "HMViewerViewController.h"
 #import "HMSelectCounterButton.h"
 
-@interface HMPreviewViewController ()
-
+@interface HMPreviewViewController () <UIPageViewControllerDataSource>
+@property (nonatomic, readonly) NSInteger dataCount;
 @end
 
 @implementation HMPreviewViewController {
@@ -21,8 +21,12 @@
     HMAlbum *_album;
     /// 选中素材数组
     NSMutableArray <PHAsset *>*_selectedAssets;
+    /// 预览素材数组
+    NSMutableArray <PHAsset *>*_previewAssets;
     /// 最大选择图像数量
     NSInteger _maxPickerCount;
+    /// 预览相册
+    BOOL _previewAlbum;
     
     /// 完成按钮
     UIBarButtonItem *_doneItem;
@@ -30,14 +34,28 @@
     HMSelectCounterButton *_counterButton;
 }
 
-- (instancetype)initWithAlbum:(id)album selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets maxPickerCount:(NSInteger)maxPickerCount {
+- (instancetype)initWithAlbum:(id)album
+               selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets
+               maxPickerCount:(NSInteger)maxPickerCount
+                 previewAlbum:(BOOL)previewAlbum {
+    
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _album = album;
         _selectedAssets = selectedAssets;
+        _previewAssets = [selectedAssets mutableCopy];
         _maxPickerCount = maxPickerCount;
+        _previewAlbum = previewAlbum;
     }
     return self;
+}
+
+- (NSInteger)dataCount {
+    if (_previewAlbum) {
+        return _album.count;
+    } else {
+        return _selectedAssets.count;
+    }
 }
 
 - (void)viewDidLoad {
@@ -62,6 +80,36 @@
 
 - (void)clickCloseButton {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIPageViewControllerDataSource
+/// 返回前一页控制器
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    
+    return [self viewerControllerWithViewController:viewController isNext:NO];
+}
+
+/// 返回下一页控制器
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    
+    return [self viewerControllerWithViewController:viewController isNext:YES];
+}
+
+- (nullable UIViewController *)viewerControllerWithViewController:(UIViewController *)viewController isNext:(BOOL)isNext {
+    
+    HMViewerViewController *detail = (HMViewerViewController *)viewController;
+    NSInteger index = detail.index;
+    
+    index += isNext ? 1 : -1;
+    
+    if (index < 0 || index >= self.dataCount) {
+        return nil;
+    }
+    
+    HMViewerViewController *vc = [[HMViewerViewController alloc] init];
+    vc.index = index;
+    
+    return vc;
 }
 
 #pragma mark - 准备子控制器
@@ -89,6 +137,8 @@
     [_pageController didMoveToParentViewController:self];
     
     self.view.gestureRecognizers = _pageController.gestureRecognizers;
+    
+    _pageController.dataSource = self;
 }
 
 /// 准备导航栏

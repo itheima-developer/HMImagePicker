@@ -123,7 +123,8 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     HMPreviewViewController *preview = [[HMPreviewViewController alloc]
                                         initWithAlbum:_album
                                         selectedAssets:_selectedAssets
-                                        maxPickerCount:_maxPickerCount];
+                                        maxPickerCount:_maxPickerCount
+                                        previewAlbum:NO];
     
     [self.navigationController pushViewController:preview animated:YES];
 }
