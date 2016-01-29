@@ -89,7 +89,7 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
     UIViewController *viewController = [super popViewControllerAnimated:animated];
     
-    self.toolbarHidden = (viewController != self.topViewController);
+    self.toolbarHidden = (self.viewControllers.count == 1);
     
     return viewController;
 }
