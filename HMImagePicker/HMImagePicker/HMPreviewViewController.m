@@ -12,7 +12,7 @@
 #import "HMSelectCounterButton.h"
 #import "HMImageSelectButton.h"
 
-@interface HMPreviewViewController () <UIPageViewControllerDataSource>
+@interface HMPreviewViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property (nonatomic, readonly) NSInteger imagesCount;
 /// 选择图像按钮
 @property (nonatomic) HMImageSelectButton *selectedButton;
@@ -86,9 +86,28 @@
     [self prepareNavigationBar];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    // TODO: --- 更新选中资源数组
+    for (NSInteger i = 0; i < _selectedIndexes.count; i++) {
+        BOOL selected = _selectedIndexes[i].boolValue;
+        
+        if (!selected) {
+            [_selectedAssets removeObjectAtIndex:i];
+        }
+    }
+    
+    NSLog(@"%@", _selectedAssets);
+}
+
 #pragma mark - 监听方法
-- (void)clickSelectedButton {
-    NSLog(@"%s", __FUNCTION__);
+- (void)clickSelectedButton:(HMImageSelectButton *)button {
+    HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
+
+    _selectedIndexes[viewer.index] = @(button.selected);
+    
+    NSLog(@"%@", _selectedIndexes);
 }
 
 // 如果没有选中照片，返回当前预览的图片
@@ -102,6 +121,21 @@
 
 - (void)clickCloseButton {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIPageViewControllerDelegate
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    
+    HMViewerViewController *viewer = (HMViewerViewController *)pendingViewControllers.lastObject;
+    
+    self.selectedButton.selected = _selectedIndexes[viewer.index].boolValue;
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+
+    HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
+    
+    self.selectedButton.selected = _selectedIndexes[viewer.index].boolValue;
 }
 
 #pragma mark - UIPageViewControllerDataSource
@@ -136,7 +170,6 @@
     
     viewer.index = index;
     viewer.asset = [self assetWithIndex:index];
-    self.selectedButton.selected = _selectedIndexes[index].boolValue;
     
     return viewer;
 }
@@ -152,6 +185,7 @@
                        options:options];
     
     NSArray *viewControllers = @[[self viewerControllerWithIndex:0]];
+    self.selectedButton.selected = _selectedIndexes[0];
     
     // 添加分页控制器的子视图控制器数组
     [_pageController setViewControllers:viewControllers
@@ -167,6 +201,7 @@
     self.view.gestureRecognizers = _pageController.gestureRecognizers;
     
     _pageController.dataSource = self;
+    _pageController.delegate = self;
 }
 
 /// 准备导航栏
@@ -198,7 +233,7 @@
         _selectedButton = [[HMImageSelectButton alloc]
                            initWithImageName:@"check_box_default"
                            selectedName:@"check_box_right"];
-        [_selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
+        [_selectedButton addTarget:self action:@selector(clickSelectedButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _selectedButton;
 }
