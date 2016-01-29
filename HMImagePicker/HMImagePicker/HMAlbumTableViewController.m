@@ -125,7 +125,17 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     HMAlbum *album = _assetCollection[indexPath.row];
     HMImageGridViewController *grid = [[HMImageGridViewController alloc] initWithAlbum:album];
     
+    grid.selectedAssets = self.selectedAssets;
+    
     [self.navigationController pushViewController:grid animated:YES];
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray<PHAsset *> *)selectedAssets {
+    if (_selectedAssets == nil) {
+        _selectedAssets = [NSMutableArray array];
+    }
+    return _selectedAssets;
 }
 
 @end

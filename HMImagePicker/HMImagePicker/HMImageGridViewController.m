@@ -13,7 +13,7 @@
 
 static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIdentifier";
 
-@interface HMImageGridViewController ()
+@interface HMImageGridViewController () <HMImageGridCellDelegate>
 
 @end
 
@@ -43,6 +43,20 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     [self prepareUI];
 }
 
+#pragma mark - HMImageGridCellDelegate
+- (void)imageGridCell:(HMImageGridCell *)cell didSelected:(BOOL)selected {
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    PHAsset *asset = [_album assetWithIndex:indexPath.item];
+    
+    if (selected) {
+        [self.selectedAssets addObject:asset];
+    } else {
+        [self.selectedAssets removeObject:asset];
+    }
+    
+    NSLog(@"%@", self.selectedAssets);
+}
+
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _album.count;
@@ -53,9 +67,11 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     HMImageGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HMImageGridViewCellIdentifier forIndexPath:indexPath];
     
     cell.imageView.image = [_album emptyImageWithSize:cell.bounds.size];
-    [_album requestThumbnailWithAssetIndex:indexPath.row Size:cell.bounds.size completion:^(UIImage * _Nonnull thumbnail) {
+    [_album requestThumbnailWithAssetIndex:indexPath.item Size:cell.bounds.size completion:^(UIImage * _Nonnull thumbnail) {
         cell.imageView.image = thumbnail;
     }];
+    
+    cell.delegate = self;
     
     return cell;
 }

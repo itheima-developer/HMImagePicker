@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Photos;
 
 /// 相册列表控制器
 @interface HMAlbumTableViewController : UITableViewController
-
+/// 选中素材数组
+@property (nonatomic) NSMutableArray <PHAsset *> *selectedAssets;
 @end

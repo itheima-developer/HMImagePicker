@@ -20,6 +20,7 @@
 		C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393FB1C5722A400E6AB68 /* MainViewController.m */; };
 		C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */; };
 		C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */; };
+		C2348FB41C5B15D6007124FA /* FFImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridCell.m; sourceTree = "<group>"; };
 		C2348FB01C5B108E007124FA /* HMImageGridViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewLayout.h; sourceTree = "<group>"; };
 		C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewLayout.m; sourceTree = "<group>"; };
+		C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FFImagePicker.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		C2122CD81C572369008FDBEA /* HMImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */,
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
 				C2122CF21C576E60008FDBEA /* 模型 */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23393F31C57228E00E6AB68 /* LaunchScreen.storyboard in Resources */,
+				C2348FB41C5B15D6007124FA /* FFImagePicker.bundle in Resources */,
 				C23393F01C57228E00E6AB68 /* Assets.xcassets in Resources */,
 				C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */,
 			);

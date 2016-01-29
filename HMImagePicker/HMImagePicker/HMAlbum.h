@@ -46,4 +46,11 @@
 /// @param completion 完成回调
 - (void)requestThumbnailWithAssetIndex:(NSInteger)index Size:(CGSize)size completion:( void (^ _Nonnull)(UIImage * _Nonnull thumbnail))completion;
 
+/// 返回索引对应的资源素材
+///
+/// @param index 资源索引
+///
+/// @return 资源素材
+- (PHAsset * _Nullable)assetWithIndex:(NSInteger)index;
+
 @end

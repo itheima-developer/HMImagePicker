@@ -18,7 +18,6 @@
     
     CGFloat margin = 2;
     CGFloat itemWH = [self itemWHWithCount:3 margin:margin];
-    NSLog(@"%f", itemWH);
     
     self.itemSize = CGSizeMake(itemWH, itemWH);
     self.minimumInteritemSpacing = margin;

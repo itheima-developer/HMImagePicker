@@ -164,6 +164,13 @@
     return result;
 }
 
+- (PHAsset *)assetWithIndex:(NSInteger)index {
+    if (index >= _fetchResult.count || index < 0) {
+        return nil;
+    }
+    return _fetchResult[index];
+}
+
 - (CGSize)sizeWithScale:(CGSize)size {
     CGFloat scale = [UIScreen mainScreen].scale;
     

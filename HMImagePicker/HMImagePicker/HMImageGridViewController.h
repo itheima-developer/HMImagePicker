@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Photos;
 @class HMAlbum;
 
 /// 多图选择控制器
@@ -15,4 +16,6 @@
 ///
 /// @return 相册模型
 - (instancetype)initWithAlbum:(HMAlbum *)album;
+/// 选中素材数组
+@property (nonatomic) NSMutableArray <PHAsset *> *selectedAssets;
 @end
