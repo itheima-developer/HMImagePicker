@@ -90,6 +90,7 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     UIViewController *viewController = [super popViewControllerAnimated:animated];
     
     self.toolbarHidden = (self.viewControllers.count == 1);
+    self.hidesBarsOnTap = NO;
     
     return viewController;
 }

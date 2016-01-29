@@ -134,6 +134,10 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
      userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
 }
 
+- (void)clickCloseButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - 设置界面
 - (void)prepareUI {
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -153,6 +157,9 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     self.toolbarItems = @[_previewItem, spaceItem, counterItem, _doneItem];
+    
+    // 取消按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton)];
     
     // 注册可重用 cell
     [self.collectionView registerClass:[HMImageGridCell class] forCellWithReuseIdentifier:HMImageGridViewCellIdentifier];
