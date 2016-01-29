@@ -8,6 +8,7 @@
 
 #import "HMPreviewViewController.h"
 #import "HMViewerViewController.h"
+#import "HMSelectCounterButton.h"
 
 @interface HMPreviewViewController ()
 
@@ -15,6 +16,11 @@
 
 @implementation HMPreviewViewController {
     UIPageViewController *_pageController;
+    
+    /// 完成按钮
+    UIBarButtonItem *_doneItem;
+    /// 选择计数按钮
+    HMSelectCounterButton *_counterButton;
 }
 
 - (void)viewDidLoad {
@@ -27,6 +33,15 @@
 }
 
 #pragma mark - 监听方法
+- (void)clickFinishedButton {
+    
+    //    [[NSNotificationCenter defaultCenter]
+    //     postNotificationName:HMImagePickerDidSelectedNotification
+    //     object:self
+    //     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
+    NSLog(@"%s", __FUNCTION__);
+}
+
 - (void)clickCloseButton {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -60,12 +75,22 @@
 
 /// 准备导航栏
 - (void)prepareNavigationBar {
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.navigationController.hidesBarsOnTap = YES;
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton)];
-    self.toolbarItems = @[cancelItem];
+    
+    _counterButton = [[HMSelectCounterButton alloc] init];
+    UIBarButtonItem *counterItem = [[UIBarButtonItem alloc] initWithCustomView:_counterButton];
+    
+    _doneItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(clickFinishedButton)];
+    _doneItem.enabled = NO;
+    
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    self.toolbarItems = @[cancelItem, spaceItem, counterItem, _doneItem];
 }
 
 @end
