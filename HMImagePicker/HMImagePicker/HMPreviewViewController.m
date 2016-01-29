@@ -69,7 +69,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     [self prepareChildControllers];
     [self prepareNavigationBar];
@@ -124,11 +124,12 @@
 #pragma mark - 准备子控制器
 - (void)prepareChildControllers {
     
+    NSDictionary *options = @{UIPageViewControllerOptionInterPageSpacingKey: @(20)};
     // 实例化分页控制器 - 水平分页滚动
     _pageController = [[UIPageViewController alloc]
                        initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                       options:nil];
+                       options:options];
     
     HMViewerViewController *viewer = [[HMViewerViewController alloc] init];
     viewer.index = 0;

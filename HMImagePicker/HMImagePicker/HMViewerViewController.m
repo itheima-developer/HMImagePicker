@@ -30,8 +30,7 @@
      contentMode:PHImageContentModeAspectFill
      options:options
      resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-         UIImage *image = [UIImage imageWithCGImage:result.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-         _imageView.image = image;
+         _imageView.image = result;
          
          [self setImageViewPosition];
      }];
