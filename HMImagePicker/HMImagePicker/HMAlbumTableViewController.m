@@ -9,6 +9,7 @@
 #import "HMAlbumTableViewController.h"
 #import "HMAlbum.h"
 #import "HMAlbumTableViewCell.h"
+#import "HMImageGridViewController.h"
 
 static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellIdentifier";
 
@@ -27,7 +28,6 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     // 导航栏
     self.title = @"照片";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton)];
-    self.navigationController.toolbarHidden = YES;
     
     // 获取相册
     [self fetchAssetCollectionWithCompletion:^(NSArray<HMAlbum *> *assetCollection, BOOL isDenied) {
@@ -118,6 +118,14 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     cell.album = _assetCollection[indexPath.row];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    HMAlbum *album = _assetCollection[indexPath.row];
+    HMImageGridViewController *grid = [[HMImageGridViewController alloc] initWithAlbum:album];
+    
+    [self.navigationController pushViewController:grid animated:YES];
 }
 
 @end

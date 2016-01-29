@@ -24,9 +24,22 @@
         _rootViewController = [[HMAlbumTableViewController alloc] init];
         
         [self pushViewController:_rootViewController animated:NO];
-        self.toolbarHidden = NO;
     }
     return self;
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.toolbarHidden = [viewController isKindOfClass:[HMAlbumTableViewController class]];
+    
+    [super pushViewController:viewController animated:animated];
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+    UIViewController *viewController = [super popViewControllerAnimated:animated];
+    
+    self.toolbarHidden = (viewController != self.topViewController);
+    
+    return viewController;
 }
 
 @end

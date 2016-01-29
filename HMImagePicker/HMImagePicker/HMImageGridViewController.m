@@ -7,26 +7,26 @@
 //
 
 #import "HMImageGridViewController.h"
+#import "HMAlbum.h"
 
 @interface HMImageGridViewController ()
 
 @end
 
-@implementation HMImageGridViewController
+@implementation HMImageGridViewController {
+    /// 相册模型
+    HMAlbum *_album;
+}
 
 #pragma mark - 构造函数
-- (instancetype)init {
+
+- (instancetype)initWithAlbum:(HMAlbum *)album {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
+        _album = album;
+        
         self.collectionView.backgroundColor = [UIColor whiteColor];
-        
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                                 initWithTitle:@"取消"
-                                                 style:UIBarButtonItemStylePlain
-                                                 target:self
-                                                 action:@selector(clickCloseButton)];
-        
     }
     return self;
 }

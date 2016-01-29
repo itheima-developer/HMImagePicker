@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HMAlbum;
 
 /// 多图选择控制器
 @interface HMImageGridViewController : UICollectionViewController
-
+/// 构造函数
+///
+/// @return 相册模型
+- (instancetype)initWithAlbum:(HMAlbum *)album;
 @end
