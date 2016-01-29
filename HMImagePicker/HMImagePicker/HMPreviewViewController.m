@@ -14,6 +14,8 @@
 
 @interface HMPreviewViewController () <UIPageViewControllerDataSource>
 @property (nonatomic, readonly) NSInteger imagesCount;
+/// 选择图像按钮
+@property (nonatomic) HMImageSelectButton *selectedButton;
 @end
 
 @implementation HMPreviewViewController {
@@ -23,8 +25,8 @@
     HMAlbum *_album;
     /// 选中素材数组
     NSMutableArray <PHAsset *>*_selectedAssets;
-    /// 预览素材数组
-    NSMutableArray <PHAsset *>*_previewAssets;
+    /// 选中素材索引
+    NSMutableArray <NSNumber *>*_selectedIndexes;
     /// 最大选择图像数量
     NSInteger _maxPickerCount;
     /// 预览相册
@@ -45,9 +47,16 @@
     if (self) {
         _album = album;
         _selectedAssets = selectedAssets;
-        _previewAssets = [selectedAssets mutableCopy];
         _maxPickerCount = maxPickerCount;
         _previewAlbum = previewAlbum;
+        
+        // 记录选中素材索引
+        _selectedIndexes = [NSMutableArray array];
+        if (!_previewAlbum) {
+            for (NSInteger i = 0; i < _selectedAssets.count; i++) {
+                [_selectedIndexes addObject:@(YES)];
+            }
+        }
     }
     return self;
 }
@@ -119,9 +128,15 @@
         return nil;
     }
     
+    return [self viewerControllerWithIndex:index];
+}
+
+- (HMViewerViewController *)viewerControllerWithIndex:(NSInteger)index {
     HMViewerViewController *viewer = [[HMViewerViewController alloc] init];
+    
     viewer.index = index;
     viewer.asset = [self assetWithIndex:index];
+    self.selectedButton.selected = _selectedIndexes[index].boolValue;
     
     return viewer;
 }
@@ -136,10 +151,7 @@
                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                        options:options];
     
-    HMViewerViewController *viewer = [[HMViewerViewController alloc] init];
-    viewer.index = 0;
-    viewer.asset = [self assetWithIndex:0];
-    NSArray *viewControllers = @[viewer];
+    NSArray *viewControllers = @[[self viewerControllerWithIndex:0]];
     
     // 添加分页控制器的子视图控制器数组
     [_pageController setViewControllers:viewControllers
@@ -177,12 +189,18 @@
     
     _counterButton.count = _selectedAssets.count;
     
-    HMImageSelectButton *selectedButton = [[HMImageSelectButton alloc]
-                                           initWithImageName:@"check_box_default"
-                                           selectedName:@"check_box_right"];
-    [selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:selectedButton];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.selectedButton];
+}
+
+#pragma mark - 懒加载
+- (HMImageSelectButton *)selectedButton {
+    if (_selectedButton == nil) {
+        _selectedButton = [[HMImageSelectButton alloc]
+                           initWithImageName:@"check_box_default"
+                           selectedName:@"check_box_right"];
+        [_selectedButton addTarget:self action:@selector(clickSelectedButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _selectedButton;
 }
 
 @end
