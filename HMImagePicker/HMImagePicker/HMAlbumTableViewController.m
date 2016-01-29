@@ -44,6 +44,15 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
         _assetCollection = assetCollection;
         
         [self.tableView reloadData];
+        
+        // 默认显示第一个相册
+        if (_assetCollection.count > 0) {
+            HMImageGridViewController *grid = [[HMImageGridViewController alloc]
+                                               initWithAlbum:_assetCollection[0]
+                                               selectedAssets:self.selectedAssets];
+            
+            [self.navigationController pushViewController:grid animated:NO];
+        }
     }];
     
     // 设置表格
