@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HMViewerViewController : UIViewController
-
+/// 图像索引
+@property (nonatomic) NSUInteger index;
 @end

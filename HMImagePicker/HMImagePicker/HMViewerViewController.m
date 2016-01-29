@@ -15,6 +15,15 @@
 @implementation HMViewerViewController {
     UIScrollView *_scrollView;
     UIImageView *_imageView;
+    UILabel *_label;
+}
+
+- (void)setIndex:(NSUInteger)index {
+    _index = index;
+    
+    [self view];
+    
+    _label.text = [NSString stringWithFormat:@"%zd", index];
 }
 
 - (void)loadView {
@@ -23,6 +32,12 @@
     
     _imageView = [[UIImageView alloc] init];
     [_scrollView addSubview:_imageView];
+    
+    _label = [[UILabel alloc] init];
+    _label.textColor = [UIColor blackColor];
+    _label.font = [UIFont systemFontOfSize:40];
+    _label.textAlignment = NSTextAlignmentCenter;
+    [_scrollView addSubview:_label];
 }
 
 - (void)viewDidLoad {
@@ -35,6 +50,7 @@
     [super viewWillLayoutSubviews];
     
     _imageView.frame = _scrollView.bounds;
+    _label.frame = _scrollView.bounds;
 }
 
 @end
