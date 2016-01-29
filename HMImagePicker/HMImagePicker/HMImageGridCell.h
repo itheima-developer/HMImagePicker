@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/// 多图选择视图 Cell
 @interface HMImageGridCell : UICollectionViewCell
-
+@property (nonatomic) UIImageView *imageView;
 @end
