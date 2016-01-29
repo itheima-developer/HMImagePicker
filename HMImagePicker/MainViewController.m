@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "HMImagePickerController.h"
 
-@interface MainViewController ()
+@interface MainViewController () <HMImagePickerControllerDelegate>
 
 @end
 
@@ -17,8 +17,16 @@
 
 - (IBAction)clickSelectPhotoButton {
     HMImagePickerController *picker = [[HMImagePickerController alloc] init];
+    picker.pickerDelegate = self;
     
     [self presentViewController:picker animated:YES completion:nil];
+}
+
+#pragma mark - HMImagePickerControllerDelegate
+- (void)imagePickerController:(HMImagePickerController *)picker didFinishSelectedImages:(NSArray<UIImage *> *)images {
+    NSLog(@"%@", images);
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

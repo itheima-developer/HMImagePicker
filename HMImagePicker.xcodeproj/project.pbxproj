@@ -52,6 +52,7 @@
 		C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FFImagePicker.bundle; sourceTree = "<group>"; };
 		C2348FB51C5B1D3C007124FA /* HMSelectCounterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSelectCounterButton.h; sourceTree = "<group>"; };
 		C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSelectCounterButton.m; sourceTree = "<group>"; };
+		C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMImagePickerGlobal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +72,7 @@
 				C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */,
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
+				C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */,
 				C2348FB81C5B1D6D007124FA /* 自定义控件 */,
 				C2122CF21C576E60008FDBEA /* 模型 */,
 				C2122CEB1C57572E008FDBEA /* 相册列表 */,

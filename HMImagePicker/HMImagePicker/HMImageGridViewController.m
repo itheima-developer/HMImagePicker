@@ -7,6 +7,7 @@
 //
 
 #import "HMImageGridViewController.h"
+#import "HMImagePickerGlobal.h"
 #import "HMAlbum.h"
 #import "HMImageGridCell.h"
 #import "HMImageGridViewLayout.h"
@@ -32,7 +33,6 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 }
 
 #pragma mark - 构造函数
-
 - (instancetype)initWithAlbum:(HMAlbum *)album selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
     HMImageGridViewLayout *layout = [[HMImageGridViewLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
@@ -47,6 +47,10 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     [super viewDidLoad];
     
     [self prepareUI];
+}
+
+- (void)dealloc {
+    NSLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark - HMImageGridCellDelegate
@@ -96,7 +100,11 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 }
 
 - (void)clickFinishedButton {
-    NSLog(@"%s", __FUNCTION__);
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:HMImagePickerDidSelectedNotification
+     object:self
+     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
 }
 
 #pragma mark - 设置界面
