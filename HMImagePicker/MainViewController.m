@@ -17,7 +17,10 @@
 
 - (IBAction)clickSelectPhotoButton {
     HMImagePickerController *picker = [[HMImagePickerController alloc] init];
+    
     picker.pickerDelegate = self;
+    picker.targetSize = CGSizeMake(300, 300);
+    picker.maxPickerCount = 3;
     
     [self presentViewController:picker animated:YES completion:nil];
 }

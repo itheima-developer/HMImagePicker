@@ -13,4 +13,6 @@
 @interface HMAlbumTableViewController : UITableViewController
 /// 选中素材数组
 @property (nonatomic) NSMutableArray <PHAsset *> *selectedAssets;
+/// 最大选择图像数量，默认 9 张
+@property (nonatomic) NSInteger maxPickerCount;
 @end

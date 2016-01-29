@@ -24,6 +24,9 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     HMAlbum *_album;
     /// 选中素材数组
     NSMutableArray <PHAsset *>*_selectedAssets;
+    /// 最大选择图像数量
+    NSInteger _maxPickerCount;
+    
     /// 预览按钮
     UIBarButtonItem *_previewItem;
     /// 完成按钮
@@ -33,12 +36,16 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 }
 
 #pragma mark - 构造函数
-- (instancetype)initWithAlbum:(HMAlbum *)album selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
+- (instancetype)initWithAlbum:(HMAlbum *)album
+               selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets
+               maxPickerCount:(NSInteger)maxPickerCount {
+    
     HMImageGridViewLayout *layout = [[HMImageGridViewLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         _album = album;
         _selectedAssets = selectedAssets;
+        _maxPickerCount = maxPickerCount;
     }
     return self;
 }
@@ -55,6 +62,23 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 
 #pragma mark - HMImageGridCellDelegate
 - (void)imageGridCell:(HMImageGridCell *)cell didSelected:(BOOL)selected {
+    
+    // 判断是否已经到达最大数量
+    if (_selectedAssets.count == _maxPickerCount && selected) {
+        
+        NSString *message = [NSString stringWithFormat:@"最多只能选择 %zd 张照片", _maxPickerCount];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [cell clickSelectedButton];
+        
+        return;
+    }
+    
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     PHAsset *asset = [_album assetWithIndex:indexPath.item];
     

@@ -26,11 +26,11 @@
 /// 相册描述信息
 @property (nonatomic, readonly, nullable) NSAttributedString *desc;
 
-/// 返回空白图片
+/// 返回空白图像
 ///
 /// @param size 图像尺寸
 ///
-/// @return 空白图片
+/// @return 空白图像
 - (UIImage * _Nonnull)emptyImageWithSize:(CGSize)size;
 
 /// 请求缩略图

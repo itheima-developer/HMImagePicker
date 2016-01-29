@@ -49,7 +49,8 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
         if (_assetCollection.count > 0) {
             HMImageGridViewController *grid = [[HMImageGridViewController alloc]
                                                initWithAlbum:_assetCollection[0]
-                                               selectedAssets:self.selectedAssets];
+                                               selectedAssets:self.selectedAssets
+                                               maxPickerCount:_maxPickerCount];
             
             [self.navigationController pushViewController:grid animated:NO];
         }
@@ -138,7 +139,8 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     HMAlbum *album = _assetCollection[indexPath.row];
     HMImageGridViewController *grid = [[HMImageGridViewController alloc]
                                        initWithAlbum:album
-                                       selectedAssets:self.selectedAssets];
+                                       selectedAssets:self.selectedAssets
+                                       maxPickerCount:_maxPickerCount];
     
     [self.navigationController pushViewController:grid animated:YES];
 }

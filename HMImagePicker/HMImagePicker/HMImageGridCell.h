@@ -15,6 +15,9 @@
 @property (nonatomic, weak) id<HMImageGridCellDelegate> delegate;
 @property (nonatomic) UIImageView *imageView;
 @property (nonatomic) UIButton *selectedButton;
+
+/// 点击选中图像按钮
+- (void)clickSelectedButton;
 @end
 
 @protocol HMImageGridCellDelegate <NSObject>

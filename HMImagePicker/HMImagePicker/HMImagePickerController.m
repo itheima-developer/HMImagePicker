@@ -11,6 +11,8 @@
 
 NSString *const HMImagePickerDidSelectedNotification = @"HMImagePickerDidSelectedNotification";
 NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAssetsKey";
+/// 默认选择图像大小
+#define HMImagePickerDefaultSize    CGSizeMake(600, 600)
 
 @interface HMImagePickerController ()
 
@@ -25,14 +27,16 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     self = [super init];
     if (self) {
         _rootViewController = [[HMAlbumTableViewController alloc] init];
+        // 默认最大选择图像数量
+        self.maxPickerCount = 9;
+        
+        [self pushViewController:_rootViewController animated:NO];
         
         [[NSNotificationCenter defaultCenter]
          addObserver:self
          selector:@selector(didFinishedSelectAssets:)
          name:HMImagePickerDidSelectedNotification
          object:nil];
-        
-        [self pushViewController:_rootViewController animated:NO];
     }
     return self;
 }
@@ -43,6 +47,23 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     [[NSNotificationCenter defaultCenter] removeObserver:self name:HMImagePickerDidSelectedNotification object:nil];
 }
 
+#pragma mark - getter & setter 方法
+- (CGSize)targetSize {
+    if (CGSizeEqualToSize(_targetSize, CGSizeZero)) {
+        _targetSize = HMImagePickerDefaultSize;
+    }
+    return _targetSize;
+}
+
+- (void)setMaxPickerCount:(NSInteger)maxPickerCount {
+    _rootViewController.maxPickerCount = maxPickerCount;
+}
+
+- (NSInteger)maxPickerCount {
+    return _rootViewController.maxPickerCount;
+}
+
+#pragma mark - 监听方法
 - (void)didFinishedSelectAssets:(NSNotification *)notification {
     
     NSArray <PHAsset *> *selectedAssets = notification.userInfo[HMImagePickerDidSelectedAssetsKey];
@@ -58,6 +79,7 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     }];
 }
 
+#pragma mark - UINavigationController 父类方法
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     self.toolbarHidden = [viewController isKindOfClass:[HMAlbumTableViewController class]];
     
@@ -87,8 +109,7 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     
     // 设置加载图像尺寸(以像素为单位)
-    // TODO: - 设置图像大小
-    CGSize targetSize = CGSizeMake(600, 600);
+    CGSize targetSize = self.targetSize;
     
     NSMutableArray <UIImage *> *images = [NSMutableArray array];
     dispatch_group_t group = dispatch_group_create();
