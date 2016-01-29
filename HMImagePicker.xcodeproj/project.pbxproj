@@ -21,6 +21,7 @@
 		C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */; };
 		C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */; };
 		C2348FB41C5B15D6007124FA /* FFImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */; };
+		C2348FB71C5B1D3C007124FA /* HMSelectCounterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		C2348FB01C5B108E007124FA /* HMImageGridViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewLayout.h; sourceTree = "<group>"; };
 		C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewLayout.m; sourceTree = "<group>"; };
 		C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FFImagePicker.bundle; sourceTree = "<group>"; };
+		C2348FB51C5B1D3C007124FA /* HMSelectCounterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSelectCounterButton.h; sourceTree = "<group>"; };
+		C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSelectCounterButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 				C2348FB31C5B15D6007124FA /* FFImagePicker.bundle */,
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
+				C2348FB81C5B1D6D007124FA /* 自定义控件 */,
 				C2122CF21C576E60008FDBEA /* 模型 */,
 				C2122CEB1C57572E008FDBEA /* 相册列表 */,
 				C2122CDF1C5724FD008FDBEA /* 照片选择 */,
@@ -149,6 +153,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C2348FB81C5B1D6D007124FA /* 自定义控件 */ = {
+			isa = PBXGroup;
+			children = (
+				C2348FB51C5B1D3C007124FA /* HMSelectCounterButton.h */,
+				C2348FB61C5B1D3C007124FA /* HMSelectCounterButton.m */,
+			);
+			name = "自定义控件";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +239,7 @@
 				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
 				C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */,
 				C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */,
+				C2348FB71C5B1D3C007124FA /* HMSelectCounterButton.m in Sources */,
 				C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */,
 				C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */,
 				C2122CDB1C57238D008FDBEA /* HMImagePickerController.m in Sources */,

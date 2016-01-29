@@ -10,6 +10,7 @@
 #import "HMAlbum.h"
 #import "HMImageGridCell.h"
 #import "HMImageGridViewLayout.h"
+#import "HMSelectCounterButton.h"
 
 static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIdentifier";
 
@@ -24,6 +25,8 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     UIBarButtonItem *_previewItem;
     /// 完成按钮
     UIBarButtonItem *_doneItem;
+    /// 选择计数按钮
+    HMSelectCounterButton *_counterButton;
 }
 
 #pragma mark - 构造函数
@@ -54,7 +57,10 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
         [self.selectedAssets removeObject:asset];
     }
     
-    NSLog(@"%@", self.selectedAssets);
+    // 更新 UI
+    _counterButton.count = self.selectedAssets.count;
+    _doneItem.enabled = _counterButton.count > 0;
+    _previewItem.enabled = _counterButton.count > 0;
 }
 
 #pragma mark - UICollectionView Datasource
@@ -95,15 +101,15 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     _previewItem = [[UIBarButtonItem alloc] initWithTitle:@"预览" style:UIBarButtonItemStylePlain target:self action:@selector(clickPreviewButton)];
     _previewItem.enabled = NO;
     
-    //    _counterButton = [[HMCounterButton alloc] init];
-    //    UIBarButtonItem *counterItem = [[UIBarButtonItem alloc] initWithCustomView:_counterButton];
+    _counterButton = [[HMSelectCounterButton alloc] init];
+    UIBarButtonItem *counterItem = [[UIBarButtonItem alloc] initWithCustomView:_counterButton];
     
     _doneItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(clickFinishedButton)];
     _doneItem.enabled = NO;
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    self.toolbarItems = @[_previewItem, spaceItem, _doneItem];
+    self.toolbarItems = @[_previewItem, spaceItem, counterItem, _doneItem];
     
     // 注册可重用 cell
     [self.collectionView registerClass:[HMImageGridCell class] forCellWithReuseIdentifier:HMImageGridViewCellIdentifier];
