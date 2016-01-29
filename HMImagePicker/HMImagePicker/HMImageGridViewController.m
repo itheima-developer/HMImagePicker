@@ -12,6 +12,7 @@
 #import "HMImageGridCell.h"
 #import "HMImageGridViewLayout.h"
 #import "HMSelectCounterButton.h"
+#import "HMPreviewViewController.h"
 
 static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIdentifier";
 
@@ -120,7 +121,9 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 
 #pragma mark - 监听方法
 - (void)clickPreviewButton {
-    NSLog(@"%s", __FUNCTION__);
+    HMPreviewViewController *preview = [[HMPreviewViewController alloc] init];
+    
+    [self.navigationController pushViewController:preview animated:YES];
 }
 
 - (void)clickFinishedButton {

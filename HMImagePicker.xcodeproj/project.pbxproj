@@ -12,6 +12,8 @@
 		C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CE91C575668008FDBEA /* HMAlbumTableViewController.m */; };
 		C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */; };
 		C2122CF11C576E54008FDBEA /* HMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C2122CF01C576E54008FDBEA /* HMAlbum.m */; };
+		C221B70E1C5B3C1A00079697 /* HMPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C221B70D1C5B3C1A00079697 /* HMPreviewViewController.m */; };
+		C221B7121C5B3C3800079697 /* HMViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C221B7111C5B3C3800079697 /* HMViewerViewController.m */; };
 		C23393E51C57228E00E6AB68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E41C57228E00E6AB68 /* main.m */; };
 		C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393E71C57228E00E6AB68 /* AppDelegate.m */; };
 		C23393EE1C57228E00E6AB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393EC1C57228E00E6AB68 /* Main.storyboard */; };
@@ -35,6 +37,10 @@
 		C2122CED1C575B82008FDBEA /* HMAlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbumTableViewCell.m; sourceTree = "<group>"; };
 		C2122CEF1C576E54008FDBEA /* HMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAlbum.h; sourceTree = "<group>"; };
 		C2122CF01C576E54008FDBEA /* HMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAlbum.m; sourceTree = "<group>"; };
+		C221B70C1C5B3C1A00079697 /* HMPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPreviewViewController.h; sourceTree = "<group>"; };
+		C221B70D1C5B3C1A00079697 /* HMPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPreviewViewController.m; sourceTree = "<group>"; };
+		C221B7101C5B3C3800079697 /* HMViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMViewerViewController.h; sourceTree = "<group>"; };
+		C221B7111C5B3C3800079697 /* HMViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMViewerViewController.m; sourceTree = "<group>"; };
 		C23393E01C57228E00E6AB68 /* HMImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23393E41C57228E00E6AB68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C23393E61C57228E00E6AB68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +83,7 @@
 				C2122CF21C576E60008FDBEA /* 模型 */,
 				C2122CEB1C57572E008FDBEA /* 相册列表 */,
 				C2122CDF1C5724FD008FDBEA /* 照片选择 */,
+				C221B70F1C5B3C2200079697 /* 照片预览 */,
 			);
 			path = HMImagePicker;
 			sourceTree = "<group>";
@@ -112,6 +119,17 @@
 				C2122CF01C576E54008FDBEA /* HMAlbum.m */,
 			);
 			name = "模型";
+			sourceTree = "<group>";
+		};
+		C221B70F1C5B3C2200079697 /* 照片预览 */ = {
+			isa = PBXGroup;
+			children = (
+				C221B70C1C5B3C1A00079697 /* HMPreviewViewController.h */,
+				C221B70D1C5B3C1A00079697 /* HMPreviewViewController.m */,
+				C221B7101C5B3C3800079697 /* HMViewerViewController.h */,
+				C221B7111C5B3C3800079697 /* HMViewerViewController.m */,
+			);
+			name = "照片预览";
 			sourceTree = "<group>";
 		};
 		C23393D71C57228E00E6AB68 = {
@@ -238,8 +256,10 @@
 			files = (
 				C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */,
 				C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */,
+				C221B70E1C5B3C1A00079697 /* HMPreviewViewController.m in Sources */,
 				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
 				C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */,
+				C221B7121C5B3C3800079697 /* HMViewerViewController.m in Sources */,
 				C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */,
 				C2348FB71C5B1D3C007124FA /* HMSelectCounterButton.m in Sources */,
 				C2122CDE1C572494008FDBEA /* HMImageGridViewController.m in Sources */,
