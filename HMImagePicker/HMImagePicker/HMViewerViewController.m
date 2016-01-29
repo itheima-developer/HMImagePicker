@@ -15,35 +15,33 @@
 @implementation HMViewerViewController {
     UIScrollView *_scrollView;
     UIImageView *_imageView;
-    UILabel *_label;
-}
-
-- (void)setIndex:(NSUInteger)index {
-    _index = index;
-    
-    [self view];
-    
-    _label.text = [NSString stringWithFormat:@"%zd", index];
 }
 
 - (void)loadView {
     _scrollView = [[UIScrollView alloc] init];
+    
     self.view = _scrollView;
     
     _imageView = [[UIImageView alloc] init];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_scrollView addSubview:_imageView];
-    
-    _label = [[UILabel alloc] init];
-    _label.textColor = [UIColor blackColor];
-    _label.font = [UIFont systemFontOfSize:40];
-    _label.textAlignment = NSTextAlignmentCenter;
-    [_scrollView addSubview:_label];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _imageView.backgroundColor = [UIColor colorWithRed:((float)arc4random_uniform(256) / 255.0) green:((float)arc4random_uniform(256) / 255.0) blue:((float)arc4random_uniform(256) / 255.0) alpha:1.0];
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    
+    [[PHImageManager defaultManager]
+     requestImageForAsset:_asset
+     targetSize:[UIScreen mainScreen].nativeBounds.size
+     contentMode:PHImageContentModeAspectFit
+     options:options
+     resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+         _imageView.image = result;
+     }];
 }
 
 - (void)dealloc {
@@ -54,7 +52,6 @@
     [super viewWillLayoutSubviews];
     
     _imageView.frame = _scrollView.bounds;
-    _label.frame = _scrollView.bounds;
 }
 
 @end

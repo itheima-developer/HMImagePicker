@@ -11,7 +11,7 @@
 #import "HMSelectCounterButton.h"
 
 @interface HMPreviewViewController () <UIPageViewControllerDataSource>
-@property (nonatomic, readonly) NSInteger dataCount;
+@property (nonatomic, readonly) NSInteger imagesCount;
 @end
 
 @implementation HMPreviewViewController {
@@ -50,11 +50,19 @@
     return self;
 }
 
-- (NSInteger)dataCount {
+- (NSInteger)imagesCount {
     if (_previewAlbum) {
         return _album.count;
     } else {
         return _selectedAssets.count;
+    }
+}
+
+- (PHAsset *)assetWithIndex:(NSInteger)index {
+    if (_previewAssets) {
+        return [_album assetWithIndex:index];
+    } else {
+        return _selectedAssets[index];
     }
 }
 
@@ -102,14 +110,15 @@
     
     index += isNext ? 1 : -1;
     
-    if (index < 0 || index >= self.dataCount) {
+    if (index < 0 || index >= self.imagesCount) {
         return nil;
     }
     
-    HMViewerViewController *vc = [[HMViewerViewController alloc] init];
-    vc.index = index;
+    HMViewerViewController *viewer = [[HMViewerViewController alloc] init];
+    viewer.index = index;
+    viewer.asset = [self assetWithIndex:index];
     
-    return vc;
+    return viewer;
 }
 
 #pragma mark - 准备子控制器
@@ -123,6 +132,7 @@
     
     HMViewerViewController *viewer = [[HMViewerViewController alloc] init];
     viewer.index = 0;
+    viewer.asset = [self assetWithIndex:0];
     NSArray *viewControllers = @[viewer];
     
     // 添加分页控制器的子视图控制器数组
