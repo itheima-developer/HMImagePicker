@@ -9,6 +9,7 @@
 #import "HMImageGridViewController.h"
 #import "HMAlbum.h"
 #import "HMImageGridCell.h"
+#import "HMImageGridViewLayout.h"
 
 static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIdentifier";
 
@@ -28,8 +29,7 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 #pragma mark - 构造函数
 
 - (instancetype)initWithAlbum:(HMAlbum *)album {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(100, 120);
+    HMImageGridViewLayout *layout = [[HMImageGridViewLayout alloc] init];
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
         _album = album;

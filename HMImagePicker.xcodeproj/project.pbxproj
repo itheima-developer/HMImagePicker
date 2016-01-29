@@ -19,6 +19,7 @@
 		C23393F31C57228E00E6AB68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23393F11C57228E00E6AB68 /* LaunchScreen.storyboard */; };
 		C23393FC1C5722A400E6AB68 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23393FB1C5722A400E6AB68 /* MainViewController.m */; };
 		C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */; };
+		C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		C23393FB1C5722A400E6AB68 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C2348FAD1C5B01FB007124FA /* HMImageGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridCell.h; sourceTree = "<group>"; };
 		C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridCell.m; sourceTree = "<group>"; };
+		C2348FB01C5B108E007124FA /* HMImageGridViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMImageGridViewLayout.h; sourceTree = "<group>"; };
+		C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMImageGridViewLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				C2122CDD1C572494008FDBEA /* HMImageGridViewController.m */,
 				C2348FAD1C5B01FB007124FA /* HMImageGridCell.h */,
 				C2348FAE1C5B01FB007124FA /* HMImageGridCell.m */,
+				C2348FB01C5B108E007124FA /* HMImageGridViewLayout.h */,
+				C2348FB11C5B108E007124FA /* HMImageGridViewLayout.m */,
 			);
 			name = "照片选择";
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2122CEA1C575668008FDBEA /* HMAlbumTableViewController.m in Sources */,
+				C2348FB21C5B108E007124FA /* HMImageGridViewLayout.m in Sources */,
 				C23393E81C57228E00E6AB68 /* AppDelegate.m in Sources */,
 				C2348FAF1C5B01FB007124FA /* HMImageGridCell.m in Sources */,
 				C2122CEE1C575B82008FDBEA /* HMAlbumTableViewCell.m in Sources */,
