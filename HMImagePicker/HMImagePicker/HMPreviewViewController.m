@@ -121,10 +121,7 @@
         [selectedAssets addObject:[self assetWithIndex:viewer.index]];
     }
     
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:HMImagePickerDidSelectedNotification
-     object:self
-     userInfo:@{HMImagePickerDidSelectedAssetsKey: selectedAssets}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HMImagePickerDidSelectedNotification object:self userInfo:nil];
 }
 
 - (void)clickCloseButton {

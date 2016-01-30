@@ -81,15 +81,13 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
 #pragma mark - 监听方法
 - (void)didFinishedSelectAssets:(NSNotification *)notification {
     
-    NSArray <PHAsset *> *selectedAssets = notification.userInfo[HMImagePickerDidSelectedAssetsKey];
-    
-    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:selectedAssets:)] || selectedAssets == nil) {
+    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:selectedAssets:)] || _selectedAssets == nil) {
         [self dismissViewControllerAnimated:YES completion:nil];
         
         return;
     }
     
-    [self requestImages:selectedAssets completed:^(NSArray<UIImage *> *images) {
+    [self requestImages:_selectedAssets completed:^(NSArray<UIImage *> *images) {
         [self.pickerDelegate imagePickerController:self didFinishSelectedImages:images selectedAssets:_selectedAssets.copy];
     }];
 }
