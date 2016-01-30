@@ -20,8 +20,11 @@
 - (IBAction)clickSelectPhotoButton {
     HMImagePickerController *picker = [[HMImagePickerController alloc] initWithSelectedAssets:self.selectedAssets];
     
+    // 设置图像选择代理
     picker.pickerDelegate = self;
-    picker.targetSize = CGSizeMake(300, 300);
+    // 设置目标图片尺寸
+    picker.targetSize = CGSizeMake(600, 600);
+    // 设置最大选择照片数量
     picker.maxPickerCount = 9;
     
     [self presentViewController:picker animated:YES completion:nil];
@@ -32,7 +35,9 @@
       didFinishSelectedImages:(NSArray<UIImage *> *)images
                selectedAssets:(NSArray<PHAsset *> *)selectedAssets {
 
+    // 记录图像，方便在 CollectionView 显示
     self.images = images;
+    // 记录选中资源集合，方便再次选择照片定位
     self.selectedAssets = selectedAssets;
     
     [self.collectionView reloadData];
