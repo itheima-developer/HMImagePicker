@@ -52,7 +52,12 @@
         
         // 记录选中素材索引
         _selectedIndexes = [NSMutableArray array];
-        if (!_previewAlbum) {
+        if (_previewAlbum) {
+            for (NSInteger i = 0; i < _album.count; i++) {
+                [_selectedIndexes addObject:@(NO)];
+            }
+            
+        } else {
             for (NSInteger i = 0; i < _selectedAssets.count; i++) {
                 [_selectedIndexes addObject:@(YES)];
             }
@@ -90,13 +95,13 @@
     [super viewDidDisappear:animated];
     
     // TODO: --- 更新选中资源数组
-    for (NSInteger i = 0; i < _selectedIndexes.count; i++) {
-        BOOL selected = _selectedIndexes[i].boolValue;
-        
-        if (!selected) {
-            [_selectedAssets removeObjectAtIndex:i];
-        }
-    }
+    //    for (NSInteger i = 0; i < _selectedIndexes.count; i++) {
+    //        BOOL selected = _selectedIndexes[i].boolValue;
+    //
+    //        if (!selected) {
+    //            [_selectedAssets removeObjectAtIndex:i];
+    //        }
+    //    }
     
     NSLog(@"%@", _selectedAssets);
 }
@@ -104,7 +109,7 @@
 #pragma mark - 监听方法
 - (void)clickSelectedButton:(HMImageSelectButton *)button {
     HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
-
+    
     _selectedIndexes[viewer.index] = @(button.selected);
     
     NSLog(@"%@", _selectedIndexes);
@@ -132,7 +137,7 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
-
+    
     HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
     
     self.selectedButton.selected = _selectedIndexes[viewer.index].boolValue;
@@ -185,7 +190,7 @@
                        options:options];
     
     NSArray *viewControllers = @[[self viewerControllerWithIndex:0]];
-    self.selectedButton.selected = _selectedIndexes[0];
+    self.selectedButton.selected = _selectedIndexes[0].boolValue;
     
     // 添加分页控制器的子视图控制器数组
     [_pageController setViewControllers:viewControllers

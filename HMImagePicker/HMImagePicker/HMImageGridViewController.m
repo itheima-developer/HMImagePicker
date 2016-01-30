@@ -118,6 +118,19 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     return cell;
 }
 
+
+#pragma mark - UICollectionView Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    HMPreviewViewController *preview = [[HMPreviewViewController alloc]
+                                        initWithAlbum:_album
+                                        selectedAssets:_selectedAssets
+                                        maxPickerCount:_maxPickerCount
+                                        previewAlbum:YES];
+    
+    [self.navigationController pushViewController:preview animated:YES];
+}
+
 #pragma mark - 监听方法
 - (void)clickPreviewButton {
     HMPreviewViewController *preview = [[HMPreviewViewController alloc]
