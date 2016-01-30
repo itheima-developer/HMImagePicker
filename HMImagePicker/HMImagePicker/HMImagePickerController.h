@@ -20,7 +20,7 @@
 /// @return 图像选择控制器
 - (_Nonnull instancetype)initWithSelectedAssets:(NSArray <PHAsset *> * _Nullable)selectedAssets;
 /// 图像选择代理
-@property (nonatomic, weak) id<HMImagePickerControllerDelegate> pickerDelegate;
+@property (nonatomic, weak, nullable) id<HMImagePickerControllerDelegate> pickerDelegate;
 /// 加载图像尺寸(以像素为单位，默认大小 600 * 600)
 @property (nonatomic) CGSize targetSize;
 /// 最大选择图像数量，默认 9 张
