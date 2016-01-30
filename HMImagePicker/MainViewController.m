@@ -11,7 +11,9 @@
 #import "MainViewCell.h"
 
 @interface MainViewController () <HMImagePickerControllerDelegate>
+/// 选中照片数组
 @property (nonatomic) NSArray *images;
+/// 选中资源素材数组，用于定位已经选择的照片
 @property (nonatomic) NSArray *selectedAssets;
 @end
 

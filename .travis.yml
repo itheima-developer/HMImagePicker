@@ -1,0 +1,3 @@
+language: objective-c
+xcode-project: HMImagePicker.xcodeproj
+xcode_scheme: HMImagePicker
