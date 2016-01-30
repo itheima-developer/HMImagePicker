@@ -42,4 +42,9 @@
 /// @return 是否允许修改
 - (BOOL)previewViewController:(HMPreviewViewController *)previewViewController didChangedAsset:(PHAsset *)asset selected:(BOOL)selected;
 
+/// 选中资源数组
+///
+/// @return 选中资源数组
+- (NSMutableArray <PHAsset *> *)previewViewControllerSelectedAssets;
+
 @end

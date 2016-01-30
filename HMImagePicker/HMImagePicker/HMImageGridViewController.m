@@ -111,7 +111,7 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
             
             [self presentViewController:alert animated:YES completion:nil];
-
+            
             return NO;
         }
         [_selectedAssets addObject:asset];
@@ -136,6 +136,10 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     return YES;
 }
 
+- (NSMutableArray<PHAsset *> *)previewViewControllerSelectedAssets {
+    return _selectedAssets;
+}
+
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _album.count;
@@ -155,7 +159,6 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     
     return cell;
 }
-
 
 #pragma mark - UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

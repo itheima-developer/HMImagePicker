@@ -102,17 +102,24 @@
     }
     
     _counterButton.count = [_selectedIndexes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == 1"]].count;
-    
-    NSLog(@"%@", _selectedIndexes);
 }
 
 // 如果没有选中照片，返回当前预览的照片
 - (void)clickFinishedButton {
     
+    NSMutableArray <PHAsset *> *selectedAssets = [self.delegate previewViewControllerSelectedAssets];
+    
+    // 判断选中资源数组是否有内容，如果没有，将当前显示的照片添加到选中资源数组中
+    if (selectedAssets.count == 0) {
+        HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
+        
+        [selectedAssets addObject:[self assetWithIndex:viewer.index]];
+    }
+    
     [[NSNotificationCenter defaultCenter]
      postNotificationName:HMImagePickerDidSelectedNotification
      object:self
-     userInfo:@{HMImagePickerDidSelectedAssetsKey: _previewAssets}];
+     userInfo:@{HMImagePickerDidSelectedAssetsKey: selectedAssets}];
 }
 
 - (void)clickCloseButton {
