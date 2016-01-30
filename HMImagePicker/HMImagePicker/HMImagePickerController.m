@@ -27,14 +27,15 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
 }
 
 #pragma mark - 构造函数
-- (instancetype)initWithSelectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
+
+- (instancetype)initWithSelectedAssets:(NSArray<PHAsset *> *)selectedAssets {
     self = [super init];
     
     if (self) {
         if (selectedAssets == nil) {
             _selectedAssets = [NSMutableArray array];
         } else {
-            _selectedAssets = selectedAssets;
+            _selectedAssets = [NSMutableArray arrayWithArray:selectedAssets];
         }
         
         _rootViewController = [[HMAlbumTableViewController alloc] initWithSelectedAssets:_selectedAssets];
@@ -82,14 +83,14 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
     
     NSArray <PHAsset *> *selectedAssets = notification.userInfo[HMImagePickerDidSelectedAssetsKey];
     
-    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:)] || selectedAssets == nil) {
+    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:selectedAssets:)] || selectedAssets == nil) {
         [self dismissViewControllerAnimated:YES completion:nil];
         
         return;
     }
     
     [self requestImages:selectedAssets completed:^(NSArray<UIImage *> *images) {
-        [self.pickerDelegate imagePickerController:self didFinishSelectedImages:images];
+        [self.pickerDelegate imagePickerController:self didFinishSelectedImages:images selectedAssets:_selectedAssets.copy];
     }];
 }
 
