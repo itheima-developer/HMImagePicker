@@ -15,7 +15,7 @@
 
 static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIdentifier";
 
-@interface HMImageGridViewController () <HMImageGridCellDelegate>
+@interface HMImageGridViewController () <HMImageGridCellDelegate, HMPreviewViewControllerDelegate>
 
 @end
 
@@ -98,6 +98,44 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     _previewItem.enabled = _counterButton.count > 0;
 }
 
+#pragma mark - HMPreviewViewControllerDelegate
+- (BOOL)previewViewController:(HMPreviewViewController *)previewViewController didChangedAsset:(PHAsset *)asset selected:(BOOL)selected {
+    
+    // 更新选中素材数组
+    if (selected) {
+        if (_selectedAssets.count == _maxPickerCount) {
+            NSString *message = [NSString stringWithFormat:@"最多只能选择 %zd 张照片", _maxPickerCount];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+
+            return NO;
+        }
+        [_selectedAssets addObject:asset];
+    } else {
+        [_selectedAssets removeObject:asset];
+    }
+    [self updateCounter];
+    
+    // 根据 asset 查找索引
+    NSInteger index = [_album indexWithAsset:asset];
+    if (index == NSNotFound) {
+        NSLog(@"没有在当前相册找到素材");
+        return YES;
+    }
+    
+    // 更新 Cell 显示
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    
+    HMImageGridCell *cell = (HMImageGridCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.selectedButton.selected = selected;
+    
+    return YES;
+}
+
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _album.count;
@@ -128,6 +166,8 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
                                         maxPickerCount:_maxPickerCount
                                         previewAlbum:YES];
     
+    preview.delegate = self;
+    
     [self.navigationController pushViewController:preview animated:YES];
 }
 
@@ -138,6 +178,8 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
                                         selectedAssets:_selectedAssets
                                         maxPickerCount:_maxPickerCount
                                         previewAlbum:NO];
+    
+    preview.delegate = self;
     
     [self.navigationController pushViewController:preview animated:YES];
 }

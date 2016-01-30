@@ -23,10 +23,10 @@
     
     /// 相册模型
     HMAlbum *_album;
-    /// 选中素材数组
-    NSMutableArray <PHAsset *>*_selectedAssets;
-    /// 选中素材索引
-    NSMutableArray <NSNumber *>*_selectedIndexes;
+    /// 预览的素材数组
+    NSMutableArray <PHAsset *> *_previewAssets;
+    /// 选中素材索引记录数组
+    NSMutableArray <NSNumber *> *_selectedIndexes;
     /// 最大选择图像数量
     NSInteger _maxPickerCount;
     /// 预览相册
@@ -46,7 +46,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _album = album;
-        _selectedAssets = selectedAssets;
+        _previewAssets = selectedAssets.mutableCopy;
         _maxPickerCount = maxPickerCount;
         _previewAlbum = previewAlbum;
         
@@ -58,7 +58,7 @@
             }
             
         } else {
-            for (NSInteger i = 0; i < _selectedAssets.count; i++) {
+            for (NSInteger i = 0; i < _previewAssets.count; i++) {
                 [_selectedIndexes addObject:@(YES)];
             }
         }
@@ -70,7 +70,7 @@
     if (_previewAlbum) {
         return _album.count;
     } else {
-        return _selectedAssets.count;
+        return _previewAssets.count;
     }
 }
 
@@ -78,7 +78,7 @@
     if (_previewAlbum) {
         return [_album assetWithIndex:index];
     } else {
-        return _selectedAssets[index];
+        return _previewAssets[index];
     }
 }
 
@@ -91,37 +91,28 @@
     [self prepareNavigationBar];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-    // TODO: --- 更新选中资源数组
-    //    for (NSInteger i = 0; i < _selectedIndexes.count; i++) {
-    //        BOOL selected = _selectedIndexes[i].boolValue;
-    //
-    //        if (!selected) {
-    //            [_selectedAssets removeObjectAtIndex:i];
-    //        }
-    //    }
-    
-    NSLog(@"%@", _selectedAssets);
-}
-
 #pragma mark - 监听方法
 - (void)clickSelectedButton:(HMImageSelectButton *)button {
     HMViewerViewController *viewer = _pageController.viewControllers.lastObject;
     
-    _selectedIndexes[viewer.index] = @(button.selected);
+    if ([self.delegate previewViewController:self didChangedAsset:[self assetWithIndex:viewer.index] selected:button.selected]) {
+        _selectedIndexes[viewer.index] = @(button.selected);
+    } else {
+        button.selected = !button.selected;
+    }
+    
+    _counterButton.count = [_selectedIndexes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == 1"]].count;
     
     NSLog(@"%@", _selectedIndexes);
 }
 
-// 如果没有选中照片，返回当前预览的图片
+// 如果没有选中照片，返回当前预览的照片
 - (void)clickFinishedButton {
     
     [[NSNotificationCenter defaultCenter]
      postNotificationName:HMImagePickerDidSelectedNotification
      object:self
-     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
+     userInfo:@{HMImagePickerDidSelectedAssetsKey: _previewAssets}];
 }
 
 - (void)clickCloseButton {
@@ -227,7 +218,7 @@
     
     self.toolbarItems = @[cancelItem, spaceItem, counterItem, _doneItem];
     
-    _counterButton.count = _selectedAssets.count;
+    _counterButton.count = _previewAssets.count;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.selectedButton];
 }

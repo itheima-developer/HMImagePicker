@@ -53,4 +53,11 @@
 /// @return 资源素材
 - (PHAsset * _Nullable)assetWithIndex:(NSInteger)index;
 
+/// 返回资源素材在相册中的索引
+///
+/// @param asset 资源素材
+///
+/// @return 索引
+- (NSUInteger)indexWithAsset:(PHAsset * _Nonnull)asset;
+
 @end

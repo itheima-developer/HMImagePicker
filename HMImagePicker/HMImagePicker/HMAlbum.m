@@ -171,6 +171,10 @@
     return _fetchResult[index];
 }
 
+- (NSUInteger)indexWithAsset:(PHAsset *)asset {
+    return [_fetchResult indexOfObject:asset];
+}
+
 - (CGSize)sizeWithScale:(CGSize)size {
     CGFloat scale = [UIScreen mainScreen].scale;
     
