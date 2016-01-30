@@ -22,13 +22,22 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
 
 @implementation HMImagePickerController {
     HMAlbumTableViewController *_rootViewController;
+    /// 选中素材数组
+    NSMutableArray <PHAsset *> *_selectedAssets;
 }
 
 #pragma mark - 构造函数
-- (instancetype)init {
+- (instancetype)initWithSelectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
     self = [super init];
+    
     if (self) {
-        _rootViewController = [[HMAlbumTableViewController alloc] init];
+        if (selectedAssets == nil) {
+            _selectedAssets = [NSMutableArray array];
+        } else {
+            _selectedAssets = selectedAssets;
+        }
+        
+        _rootViewController = [[HMAlbumTableViewController alloc] initWithSelectedAssets:_selectedAssets];
         // 默认最大选择图像数量
         self.maxPickerCount = 9;
         
@@ -41,6 +50,11 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
          object:nil];
     }
     return self;
+}
+
+- (instancetype)init {
+    NSAssert(NO, @"请调用 `-initWithSelectedAssets:`");
+    return nil;
 }
 
 - (void)dealloc {

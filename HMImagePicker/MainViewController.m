@@ -16,7 +16,7 @@
 @implementation MainViewController
 
 - (IBAction)clickSelectPhotoButton {
-    HMImagePickerController *picker = [[HMImagePickerController alloc] init];
+    HMImagePickerController *picker = [[HMImagePickerController alloc] initWithSelectedAssets:nil];
     
     picker.pickerDelegate = self;
     picker.targetSize = CGSizeMake(300, 300);

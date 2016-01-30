@@ -78,10 +78,10 @@
 		C2122CD81C572369008FDBEA /* HMImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				C2348FB31C5B15D6007124FA /* HMImagePicker.bundle */,
+				C21AF34F1C5C799D00AF23AC /* 资源 */,
+				C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */,
 				C2122CD91C57238D008FDBEA /* HMImagePickerController.h */,
 				C2122CDA1C57238D008FDBEA /* HMImagePickerController.m */,
-				C2348FBA1C5B2C34007124FA /* HMImagePickerGlobal.h */,
 				C2348FB81C5B1D6D007124FA /* 自定义控件 */,
 				C2122CF21C576E60008FDBEA /* 模型 */,
 				C2122CEB1C57572E008FDBEA /* 相册列表 */,
@@ -122,6 +122,14 @@
 				C2122CF01C576E54008FDBEA /* HMAlbum.m */,
 			);
 			name = "模型";
+			sourceTree = "<group>";
+		};
+		C21AF34F1C5C799D00AF23AC /* 资源 */ = {
+			isa = PBXGroup;
+			children = (
+				C2348FB31C5B15D6007124FA /* HMImagePicker.bundle */,
+			);
+			name = "资源";
 			sourceTree = "<group>";
 		};
 		C221B70F1C5B3C2200079697 /* 照片预览 */ = {

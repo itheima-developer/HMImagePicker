@@ -20,6 +20,16 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 @implementation HMAlbumTableViewController {
     /// 相册资源集合
     NSArray<HMAlbum *> *_assetCollection;
+    /// 选中素材数组
+    NSMutableArray <PHAsset *> *_selectedAssets;
+}
+
+- (instancetype)initWithSelectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets {
+    self = [super init];
+    if (self) {
+        _selectedAssets = selectedAssets;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -49,7 +59,7 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
         if (_assetCollection.count > 0) {
             HMImageGridViewController *grid = [[HMImageGridViewController alloc]
                                                initWithAlbum:_assetCollection[0]
-                                               selectedAssets:self.selectedAssets
+                                               selectedAssets:_selectedAssets
                                                maxPickerCount:_maxPickerCount];
             
             [self.navigationController pushViewController:grid animated:NO];
@@ -135,18 +145,10 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     HMAlbum *album = _assetCollection[indexPath.row];
     HMImageGridViewController *grid = [[HMImageGridViewController alloc]
                                        initWithAlbum:album
-                                       selectedAssets:self.selectedAssets
+                                       selectedAssets:_selectedAssets
                                        maxPickerCount:_maxPickerCount];
     
     [self.navigationController pushViewController:grid animated:YES];
-}
-
-#pragma mark - 懒加载
-- (NSMutableArray<PHAsset *> *)selectedAssets {
-    if (_selectedAssets == nil) {
-        _selectedAssets = [NSMutableArray array];
-    }
-    return _selectedAssets;
 }
 
 @end
