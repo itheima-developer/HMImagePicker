@@ -19,13 +19,13 @@
 /// @param album          相册模型
 /// @param selectedAssets 选中资源数组
 /// @param maxPickerCount 最大选择数量
-/// @param previewAlbum   预览相册
+/// @param indexPath      预览相册的索引，如果为 nil，预览选中照片
 ///
 /// @return 多图选择控制器
 - (instancetype)initWithAlbum:(HMAlbum *)album
                selectedAssets:(NSMutableArray <PHAsset *> *)selectedAssets
                maxPickerCount:(NSInteger)maxPickerCount
-                 previewAlbum:(BOOL)previewAlbum;
+                    indexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, weak) id<HMPreviewViewControllerDelegate> delegate;
 @end
