@@ -20,7 +20,7 @@
     
     picker.pickerDelegate = self;
     picker.targetSize = CGSizeMake(300, 300);
-    picker.maxPickerCount = 3;
+    picker.maxPickerCount = 5;
     
     [self presentViewController:picker animated:YES completion:nil];
 }

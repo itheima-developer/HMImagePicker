@@ -11,6 +11,8 @@
 
 NSString *const HMImagePickerDidSelectedNotification = @"HMImagePickerDidSelectedNotification";
 NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAssetsKey";
+NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
+
 /// 默认选择图像大小
 #define HMImagePickerDefaultSize    CGSizeMake(600, 600)
 
@@ -42,8 +44,6 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
 }
 
 - (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:HMImagePickerDidSelectedNotification object:nil];
 }
 
@@ -90,6 +90,7 @@ NSString *const HMImagePickerDidSelectedAssetsKey = @"HMImagePickerDidSelectedAs
     UIViewController *viewController = [super popViewControllerAnimated:animated];
     
     self.toolbarHidden = (self.viewControllers.count == 1);
+    self.hidesBarsOnTap = NO;
     
     return viewController;
 }
