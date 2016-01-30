@@ -38,17 +38,17 @@
     HMSelectCounterButton *_counterButton;
 }
 
-- (instancetype)initWithAlbum:(id)album
-               selectedAssets:(NSMutableArray<PHAsset *> *)selectedAssets
+- (instancetype)initWithAlbum:(HMAlbum *)album
+               selectedAssets:(NSMutableArray <PHAsset *> *)selectedAssets
                maxPickerCount:(NSInteger)maxPickerCount
-                 previewAlbum:(BOOL)previewAlbum {
+                    indexPath:(NSIndexPath *)indexPath {
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _album = album;
         _previewAssets = selectedAssets.mutableCopy;
         _maxPickerCount = maxPickerCount;
-        _previewAlbum = previewAlbum;
+        _previewAlbum = (indexPath != nil);
         
         // 记录选中素材索引
         _selectedIndexes = [NSMutableArray array];
@@ -65,6 +65,9 @@
                 [_selectedIndexes addObject:@(YES)];
             }
         }
+        
+        NSInteger index = (indexPath != nil) ? indexPath.item : 0;
+        [self prepareChildControllersWithIndex:index];
     }
     return self;
 }
@@ -90,7 +93,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self prepareChildControllers];
     [self prepareNavigationBar];
 }
 
@@ -181,7 +183,7 @@
 }
 
 #pragma mark - 准备子控制器
-- (void)prepareChildControllers {
+- (void)prepareChildControllersWithIndex:(NSInteger)index {
     
     NSDictionary *options = @{UIPageViewControllerOptionInterPageSpacingKey: @(20)};
     // 实例化分页控制器 - 水平分页滚动
@@ -190,8 +192,8 @@
                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                        options:options];
     
-    NSArray *viewControllers = @[[self viewerControllerWithIndex:0]];
-    self.selectedButton.selected = _selectedIndexes[0].boolValue;
+    NSArray *viewControllers = @[[self viewerControllerWithIndex:index]];
+    self.selectedButton.selected = _selectedIndexes[index].boolValue;
     
     // 添加分页控制器的子视图控制器数组
     [_pageController setViewControllers:viewControllers

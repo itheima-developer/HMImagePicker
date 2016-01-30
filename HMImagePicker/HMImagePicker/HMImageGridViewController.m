@@ -61,7 +61,6 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     
     // 判断是否已经到达最大数量
     if (_selectedAssets.count == _maxPickerCount && selected) {
-        
         NSString *message = [NSString stringWithFormat:@"最多只能选择 %zd 张照片", _maxPickerCount];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -70,7 +69,7 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
         
         [self presentViewController:alert animated:YES completion:nil];
         
-        [cell clickSelectedButton];
+        cell.selectedButton.selected = NO;
         
         return;
     }
@@ -157,30 +156,26 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 }
 
 #pragma mark - UICollectionView Delegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)showPreviewControllerWithIndexPath:(NSIndexPath *)indexPath {
     
     HMPreviewViewController *preview = [[HMPreviewViewController alloc]
                                         initWithAlbum:_album
                                         selectedAssets:_selectedAssets
                                         maxPickerCount:_maxPickerCount
-                                        previewAlbum:YES];
+                                        indexPath:indexPath];
     
     preview.delegate = self;
     
     [self.navigationController pushViewController:preview animated:YES];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self showPreviewControllerWithIndexPath:indexPath];
+}
+
 #pragma mark - 监听方法
 - (void)clickPreviewButton {
-    HMPreviewViewController *preview = [[HMPreviewViewController alloc]
-                                        initWithAlbum:_album
-                                        selectedAssets:_selectedAssets
-                                        maxPickerCount:_maxPickerCount
-                                        previewAlbum:NO];
-    
-    preview.delegate = self;
-    
-    [self.navigationController pushViewController:preview animated:YES];
+    [self showPreviewControllerWithIndexPath:nil];
 }
 
 - (void)clickFinishedButton {
