@@ -56,10 +56,6 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
     [self prepareUI];
 }
 
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-}
-
 #pragma mark - HMImageGridCellDelegate
 - (void)imageGridCell:(HMImageGridCell *)cell didSelected:(BOOL)selected {
     

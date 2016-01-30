@@ -79,10 +79,6 @@
     [_scrollView addSubview:_imageView];
 }
 
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-}
-
 - (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setImageViewPosition];

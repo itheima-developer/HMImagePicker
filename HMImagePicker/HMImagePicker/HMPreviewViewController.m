@@ -54,9 +54,12 @@
         _selectedIndexes = [NSMutableArray array];
         if (_previewAlbum) {
             for (NSInteger i = 0; i < _album.count; i++) {
-                [_selectedIndexes addObject:@(NO)];
+                if ([_previewAssets containsObject:[self assetWithIndex:i]]) {
+                    [_selectedIndexes addObject:@(YES)];
+                } else {
+                    [_selectedIndexes addObject:@(NO)];
+                }
             }
-            
         } else {
             for (NSInteger i = 0; i < _previewAssets.count; i++) {
                 [_selectedIndexes addObject:@(YES)];

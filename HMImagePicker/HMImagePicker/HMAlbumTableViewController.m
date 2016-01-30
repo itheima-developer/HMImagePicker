@@ -62,10 +62,6 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     self.tableView.rowHeight = 80;
 }
 
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-}
-
 - (void)clickCloseButton {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
