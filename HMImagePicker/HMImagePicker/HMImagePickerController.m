@@ -22,13 +22,23 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
 
 @implementation HMImagePickerController {
     HMAlbumTableViewController *_rootViewController;
+    /// 选中素材数组
+    NSMutableArray <PHAsset *> *_selectedAssets;
 }
 
 #pragma mark - 构造函数
-- (instancetype)init {
+
+- (instancetype)initWithSelectedAssets:(NSArray<PHAsset *> *)selectedAssets {
     self = [super init];
+    
     if (self) {
-        _rootViewController = [[HMAlbumTableViewController alloc] init];
+        if (selectedAssets == nil) {
+            _selectedAssets = [NSMutableArray array];
+        } else {
+            _selectedAssets = [NSMutableArray arrayWithArray:selectedAssets];
+        }
+        
+        _rootViewController = [[HMAlbumTableViewController alloc] initWithSelectedAssets:_selectedAssets];
         // 默认最大选择图像数量
         self.maxPickerCount = 9;
         
@@ -41,6 +51,11 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
          object:nil];
     }
     return self;
+}
+
+- (instancetype)init {
+    NSAssert(NO, @"请调用 `-initWithSelectedAssets:`");
+    return nil;
 }
 
 - (void)dealloc {
@@ -66,16 +81,14 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
 #pragma mark - 监听方法
 - (void)didFinishedSelectAssets:(NSNotification *)notification {
     
-    NSArray <PHAsset *> *selectedAssets = notification.userInfo[HMImagePickerDidSelectedAssetsKey];
-    
-    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:)] || selectedAssets == nil) {
+    if (![self.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishSelectedImages:selectedAssets:)] || _selectedAssets == nil) {
         [self dismissViewControllerAnimated:YES completion:nil];
         
         return;
     }
     
-    [self requestImages:selectedAssets completed:^(NSArray<UIImage *> *images) {
-        [self.pickerDelegate imagePickerController:self didFinishSelectedImages:images];
+    [self requestImages:_selectedAssets completed:^(NSArray<UIImage *> *images) {
+        [self.pickerDelegate imagePickerController:self didFinishSelectedImages:images selectedAssets:_selectedAssets.copy];
     }];
 }
 

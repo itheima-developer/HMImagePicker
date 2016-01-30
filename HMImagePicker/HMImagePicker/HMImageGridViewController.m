@@ -179,11 +179,7 @@ static NSString *const HMImageGridViewCellIdentifier = @"HMImageGridViewCellIden
 }
 
 - (void)clickFinishedButton {
-    
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:HMImagePickerDidSelectedNotification
-     object:self
-     userInfo:@{HMImagePickerDidSelectedAssetsKey: _selectedAssets}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HMImagePickerDidSelectedNotification object:self userInfo:nil];
 }
 
 - (void)clickCloseButton {

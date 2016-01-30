@@ -8,7 +8,5 @@
 
 /// 选中照片通知
 UIKIT_EXTERN NSString *const HMImagePickerDidSelectedNotification;
-/// 选中照片KEY
-UIKIT_EXTERN NSString *const HMImagePickerDidSelectedAssetsKey;
 /// Bundle Name
 UIKIT_EXTERN NSString *const HMImagePickerBundleName;
