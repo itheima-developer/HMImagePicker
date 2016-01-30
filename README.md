@@ -1,6 +1,9 @@
 ![](http://www.itheima.com/uploads/2015/08/198x57.png)
 
 # HMImagePicker
+[![Build Status](https://travis-ci.org/itheima-developer/HMImagePicker.svg?branch=master)](https://travis-ci.org/itheima-developer/HMImagePicker)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/HMImagePicker.svg)](https://img.shields.io/cocoapods/v/HMImagePicker.svg)
+[![Platform](https://img.shields.io/cocoapods/p/HMImagePicker.svg?style=flat)](http://cocoadocs.org/docsets/HMImagePicker)
 
 轻量级图像选择框架
 
