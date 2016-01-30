@@ -13,6 +13,11 @@
 * 与 `UIImagePickerController` 几乎完全一致的接口调用方式，上手容易
 * 使用 `Photos` 框架异步加载图片，内存消耗低
 
+## 屏幕截图
+
+![](https://github.com/itheima-developer/HMImagePicker/blob/master/screenshots/screenshots01.gif?raw=true">)
+![](https://github.com/itheima-developer/HMImagePicker/blob/master/screenshots/screenshots02.gif?raw=true">)
+
 ## 系统支持
 
 * iOS 8.0+
