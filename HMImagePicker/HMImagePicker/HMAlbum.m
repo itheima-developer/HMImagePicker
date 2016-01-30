@@ -68,7 +68,7 @@
 - (UIImage *)emptyImageWithSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
     
-    [[UIColor redColor] setFill];
+    [[UIColor whiteColor] setFill];
     UIRectFill(CGRectMake(0, 0, size.width, size.height));
     
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
