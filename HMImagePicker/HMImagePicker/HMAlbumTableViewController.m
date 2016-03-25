@@ -15,6 +15,8 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
 
 @interface HMAlbumTableViewController ()
 
+@property(nonatomic,assign,getter=isShowAlertView) BOOL showAlertView;
+
 @end
 
 @implementation HMAlbumTableViewController {
@@ -42,12 +44,8 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     // 获取相册
     [self fetchAssetCollectionWithCompletion:^(NSArray<HMAlbum *> *assetCollection, BOOL isDenied) {
         if (isDenied) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"没有权限访问相册，请先在设置程序中授权访问" preferredStyle:UIAlertControllerStyleAlert];
-            
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            
+            // 在viewDidAppear中展示提示用户信息
+            self.showAlertView = YES;
             return;
         }
         
@@ -70,6 +68,23 @@ static NSString *const HMAlbumTableViewCellIdentifier = @"HMAlbumTableViewCellId
     [self.tableView registerClass:[HMAlbumTableViewCell class] forCellReuseIdentifier:HMAlbumTableViewCellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 80;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+    
+    if (self.isShowAlertView) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"没有权限访问相册，请先在设置程序中授权访问" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+
+    
 }
 
 - (void)clickCloseButton {
