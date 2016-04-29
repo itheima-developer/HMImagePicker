@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HMImagePicker"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "轻量级图像选择框架"
   s.homepage     = "https://github.com/itheima-developer/HMImagePicker"
   s.license      = "MIT"
