@@ -126,8 +126,14 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
     CGSize targetSize = self.targetSize;
     
     NSMutableArray <UIImage *> *images = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < selectedAssets.count; i++) {
+        [images addObject:[UIImage new]];
+    }
+    
     dispatch_group_t group = dispatch_group_create();
     
+    NSInteger i = 0;
     for (PHAsset *asset in selectedAssets) {
         
         dispatch_group_enter(group);
@@ -138,10 +144,11 @@ NSString *const HMImagePickerBundleName = @"HMImagePicker.bundle";
          contentMode:PHImageContentModeAspectFill
          options:options
          resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+             [images replaceObjectAtIndex:i withObject:result];
              
-             [images addObject:result];
              dispatch_group_leave(group);
          }];
+        i++;
     }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
